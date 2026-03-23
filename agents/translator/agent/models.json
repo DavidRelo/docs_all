@@ -1,0 +1,199 @@
+{
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://127.0.0.1:11434",
+      "api": "ollama",
+      "models": [
+        {
+          "id": "qwen2.5-coder:latest",
+          "name": "qwen2.5-coder:latest",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 32768,
+          "maxTokens": 8192
+        },
+        {
+          "id": "llama3.2:latest",
+          "name": "llama3.2:latest",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+        {
+          "id": "dolphin-mistral:latest",
+          "name": "dolphin-mistral:latest",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 32768,
+          "maxTokens": 8192
+        },
+        {
+          "id": "deepseek-coder:6.7b",
+          "name": "deepseek-coder:6.7b",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 16384,
+          "maxTokens": 8192
+        },
+        {
+          "id": "hf-mirror.com/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF:Q6_K_L",
+          "name": "hf-mirror.com/bartowski/Qwen2.5-Coder-7B-Instruct-GGUF:Q6_K_L",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 32768,
+          "maxTokens": 8192
+        },
+        {
+          "id": "qwen2.5:7b",
+          "name": "qwen2.5:7b",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 32768,
+          "maxTokens": 8192
+        }
+      ],
+      "apiKey": "ollama-local"
+    },
+    "zai": {
+      "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "glm-5-turbo",
+          "name": "GLM-5-Turbo",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072,
+          "api": "openai-completions"
+        },
+        {
+          "id": "glm-5",
+          "name": "GLM-5",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072,
+          "api": "openai-completions"
+        },
+        {
+          "id": "glm-4.7",
+          "name": "GLM-4.7",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072,
+          "api": "openai-completions"
+        },
+        {
+          "id": "glm-4.7-flash",
+          "name": "GLM-4.7 Flash",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072,
+          "api": "openai-completions"
+        },
+        {
+          "id": "glm-4.7-flashx",
+          "name": "GLM-4.7 FlashX",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072,
+          "api": "openai-completions"
+        }
+      ],
+      "apiKey": "0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
+    }
+  }
+}

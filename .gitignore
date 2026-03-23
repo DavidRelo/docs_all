@@ -1,0 +1,35 @@
+# 浏览器实例数据（自动重建）
+browser/
+
+# 日志
+logs/
+
+# 子agent临时数据
+subagents/
+
+# 消息投递队列
+delivery-queue/
+
+# 临时媒体文件
+media/
+
+# 更新检查状态
+update-check.json
+
+# 配置备份副本
+openclaw.json.bak*
+
+# 补全缓存
+completions/
+
+# 会话数据（需要时手动迁移）
+agents/*/sessions/
+
+# 语义搜索索引（自动重建）
+memory/
+
+# 配对设备信息（新部署需重新配对）
+devices/
+
+# 设备身份（新部署自动生成）
+identity/

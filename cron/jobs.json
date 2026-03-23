@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "70fdb335-30e6-4303-be2c-16fb879a4e02",
+      "agentId": "translator",
+      "sessionKey": "agent:translator:feishu:direct:ou_47d3198630e6ffaa946d54f42d7ae5a1",
+      "name": "清理已合并翻译工作区",
+      "enabled": true,
+      "createdAtMs": 1773973245354,
+      "updatedAtMs": 1774184425568,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行翻译工作区清理任务：\n1. 运行 bash /home/oliver/.openclaw/workspace-translator/scripts/cleanup-merged-translations.sh\n2. 读取 /tmp/translation_cleanup_summary.txt 的内容\n3. 将报告内容通过飞书发送给 ou_47d3198630e6ffaa946d54f42d7ae5a1\n4. 如果报告开头是 NO_WORKSPACES，则不发送消息，直接结束",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "ou_47d3198630e6ffaa946d54f42d7ae5a1",
+        "channel": "feishu"
+      },
+      "state": {
+        "nextRunAtMs": 1774270800000,
+        "lastRunAtMs": 1774184400003,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 25565,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}

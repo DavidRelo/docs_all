@@ -1,0 +1,249 @@
+{
+    "meta": {
+        "lastTouchedVersion": "2026.3.13",
+        "lastTouchedAt": "2026-03-18T09:37:50.366Z"
+    },
+    "wizard": {
+        "lastRunAt": "2026-03-18T02:44:51.102Z",
+        "lastRunVersion": "2026.3.13",
+        "lastRunCommand": "onboard",
+        "lastRunMode": "local"
+    },
+    "auth": {
+        "profiles": {
+            "zai:default": {
+                "provider": "zai",
+                "mode": "api_key"
+            }
+        }
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "zai": {
+                "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+                "api": "openai-completions",
+                "models": [
+                    {
+                        "id": "glm-5-turbo",
+                        "name": "GLM-5-Turbo",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 204800,
+                        "maxTokens": 131072
+                    },
+                    {
+                        "id": "glm-5",
+                        "name": "GLM-5",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 204800,
+                        "maxTokens": 131072
+                    },
+                    {
+                        "id": "glm-4.7",
+                        "name": "GLM-4.7",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 204800,
+                        "maxTokens": 131072
+                    },
+                    {
+                        "id": "glm-4.7-flash",
+                        "name": "GLM-4.7 Flash",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 204800,
+                        "maxTokens": 131072
+                    },
+                    {
+                        "id": "glm-4.7-flashx",
+                        "name": "GLM-4.7 FlashX",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 204800,
+                        "maxTokens": 131072
+                    }
+                ]
+            }
+        }
+    },
+    "agents": {
+        "defaults": {
+            "model": {
+                "primary": "zai/glm-5-turbo"
+            },
+            "models": {
+                "zai/glm-5-turbo": {
+                    "alias": "GLM5Turbo"
+                },
+                "zai/glm-5": {
+                    "alias": "GLM"
+                }
+            },
+            "workspace": "/home/oliver/.openclaw/workspace",
+            "compaction": {
+                "mode": "safeguard",
+                "reserveTokensFloor": 40000
+            }
+        },
+        "list": [
+            {
+                "id": "main",
+                "tools": {
+                    "profile": "full"
+                }
+            },
+            {
+                "id": "translator",
+                "name": "translator",
+                "workspace": "/home/oliver/.openclaw/workspace-translator",
+                "agentDir": "/home/oliver/.openclaw/agents/translator/agent",
+                "tools": {
+                    "profile": "full",
+                    "alsoAllow": [
+                        "browser",
+                        "canvas",
+                        "message",
+                        "nodes"
+                    ]
+                }
+            }
+        ]
+    },
+    "tools": {
+        "profile": "coding"
+    },
+    "bindings": [
+        {
+            "type": "route",
+            "agentId": "main",
+            "match": {
+                "channel": "feishu",
+                "accountId": "main"
+            }
+        },
+        {
+            "type": "route",
+            "agentId": "translator",
+            "match": {
+                "channel": "feishu",
+                "accountId": "translator"
+            }
+        }
+    ],
+    "commands": {
+        "native": "auto",
+        "nativeSkills": "auto",
+        "restart": true,
+        "ownerDisplay": "raw"
+    },
+    "session": {
+        "dmScope": "per-channel-peer"
+    },
+    "channels": {
+        "feishu": {
+            "enabled": true,
+            "connectionMode": "websocket",
+            "domain": "feishu",
+            "groupPolicy": "open",
+            "dmPolicy": "open",
+            "allowFrom": [
+                "*"
+            ],
+            "accounts": {
+                "main": {
+                    "appId": "cli_a794f990186a500b",
+                    "appSecret": "GN0YXZ9G8VX9xLHDMs15Og1uWSF6gA4P",
+                    "botName": "大总管"
+                },
+                "translator": {
+                    "appId": "cli_a930e5de0eb85cc7",
+                    "appSecret": "HRJchKeIC7EXGhNpKloKAfKP4PtELULf",
+                    "botName": "翻译助手"
+                }
+            }
+        }
+    },
+    "gateway": {
+        "port": 19789,
+        "mode": "local",
+        "bind": "loopback",
+        "auth": {
+            "mode": "token",
+            "token": "5a74bade9e5a8fdd503a4d6990a80b3d7de9b2bc4ea15832"
+        },
+        "tailscale": {
+            "mode": "off",
+            "resetOnExit": false
+        },
+        "nodes": {
+            "denyCommands": [
+                "camera.snap",
+                "camera.clip",
+                "screen.record",
+                "contacts.add",
+                "calendar.add",
+                "reminders.add",
+                "sms.send"
+            ]
+        }
+    },
+    "skills": {
+        "install": {
+            "nodeManager": "npm"
+        }
+    },
+    "plugins": {
+        "load": {
+            "paths": [
+                "/home/oliver/.nvm/versions/node/v24.14.0/lib/node_modules/openclaw/extensions/feishu"
+            ]
+        },
+        "entries": {
+            "feishu": {
+                "enabled": true
+            }
+        }
+    }
+}

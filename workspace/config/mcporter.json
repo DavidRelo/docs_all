@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "visual": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@z_ai/mcp-server"
+      ],
+      "env": {
+        "Z_AI_API_KEY": "0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I",
+        "Z_AI_MODE": "ZHIPU"
+      }
+    },
+    "web-search-prime": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/web_search_prime/mcp",
+      "headers": {
+        "Authorization": "Bearer 0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
+      }
+    },
+    "web-reader": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/web_reader/mcp",
+      "headers": {
+        "Authorization": "Bearer 0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "github-search": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/zread/mcp",
+      "headers": {
+        "Authorization": "Bearer 0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
+      }
+    }
+  }
+}
