@@ -16,6 +16,9 @@ media/
 # 更新检查状态
 update-check.json
 
+# 飞书去重数据
+feishu/dedup/
+
 # 配置备份副本
 openclaw.json.bak*
 
@@ -25,6 +28,9 @@ completions/
 # 会话数据（需要时手动迁移）
 agents/*/sessions/
 
+# 认证配置（敏感信息）
+agents/main/agent/auth-profiles.json
+
 # 语义搜索索引（自动重建）
 memory/
 
@@ -33,3 +39,31 @@ devices/
 
 # 设备身份（新部署自动生成）
 identity/
+
+# workspace 内的临时文件中转
+workspace*/media-send-to-user/
+
+# workspace 目录下的媒体资源
+workspace*/*.jpg
+workspace*/*.jpeg
+workspace*/*.png
+workspace*/*.gif
+workspace*/*.bmp
+workspace*/*.ico
+workspace*/*.svg
+workspace*/*.webp
+workspace*/*.mp4
+workspace*/*.avi
+workspace*/*.mov
+workspace*/*.mkv
+workspace*/*.webm
+workspace*/*.mp3
+workspace*/*.wav
+workspace*/*.flac
+workspace*/*.aac
+workspace*/*.zip
+workspace*/*.rar
+workspace*/*.7z
+workspace*/*.tar
+workspace*/*.tar.gz
+

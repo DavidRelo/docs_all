@@ -30,10 +30,10 @@ message(action=send, channel=feishu, filePath="/path/to/file", caption="optional
 
 ### Steps
 
-1. If file is not in workspace, copy it there first: `cp /source/file ~/.openclaw/workspace/media-send-to-user`
+1. If file is not in workspace, copy it there first: `cp /source/file ~/.openclaw/workspace*/media-send-to-user`
 2. Send via `message` tool with `filePath`
 3. Verify the result — if only text is received (no file), check logs: `openclaw logs 2>&1 | grep -i "feishu.*error\|path-not-allowed"`
-4. **Clean up**: After sending, delete the temporary file from workspace: `rm ~/.openclaw/workspace/media-send-to-user/<filename>`. If the directory is empty, remove it too.
+4. **Clean up**: After sending, delete the temporary file from workspace: `rm ~/.openclaw/workspace*/media-send-to-user/<filename>`. If the directory is empty, remove it too.
 
 ### Supported types
 
