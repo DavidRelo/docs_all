@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1774184425568,
+      "updatedAtMs": 1774357208752,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,13 +27,82 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1774270800000,
-        "lastRunAtMs": 1774184400003,
+        "nextRunAtMs": 1774443600000,
+        "lastRunAtMs": 1774357200002,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 25565,
+        "lastDurationMs": 8750,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fbee8e97-4da6-4057-a4a3-82c9c1cf39a3",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "磁盘使用率检查",
+      "enabled": true,
+      "createdAtMs": 1774328384024,
+      "updatedAtMs": 1774389754968,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查系统磁盘使用率：运行 `df -h /` 并解析使用率百分比。如果超过90%，用 message 工具发送飞书消息通知用户（target: ou_d4acebd410e33fe202a8893454fc30ff, channel: feishu），内容包含磁盘使用详情。如果不超过90%，什么也不用做。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1774411349193,
+        "lastRunAtMs": 1774389749196,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 5772,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3d489936-4101-48ca-9bc7-44b0b3415191",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "docuo缓存清理",
+      "enabled": true,
+      "createdAtMs": 1774328505188,
+      "updatedAtMs": 1774378808978,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查 ~/.docuo 目录大小：运行 `du -sb ~/.docuo` 获取字节数。如果超过 3GB（3221225472字节），执行 `docuo clear` 清理缓存，然后用 message 工具发送飞书消息通知用户（target: ou_d4acebd410e33fe202a8893454fc30ff, channel: feishu）说已清理。如果不超过3GB，什么也不用做。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1774465200000,
+        "lastRunAtMs": 1774378800004,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 8974,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
       }
     }

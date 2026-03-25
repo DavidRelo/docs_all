@@ -36,6 +36,11 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - This is your curated memory — the distilled essence, not raw logs
 - Over time, review your daily files and update MEMORY.md with what's worth keeping
 
+### Daily notes in memory dir
+- **多写日记没坏处，尽可能多总结多写** 
+- 当你执行完一个任务后应该简单总结任务的要求和结果记录下来
+- 当你和用户讨论方案并将方案落地后应该将方案核心内容、解决方案以及讨论的核心观点总结记录下来
+
 ### 📝 Write It Down - No "Mental Notes"!
 
 - **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
@@ -196,8 +201,6 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 
 ### 🔄 Memory Maintenance (During Heartbeats)
 
-**每次回复前评估记忆：** 在回复老板之前，快速检查这次对话中是否有值得记录的内容（决策、偏好、流程改进、经验教训等）。如果有，写入 `memory/YYYY-MM-DD.md`；如果是长期重要信息，同步更新 `MEMORY.md`。不需要每句话都记，但不要遗漏关键内容。适用于所有场景，不仅限于翻译任务。
-
 1. Read through recent `memory/YYYY-MM-DD.md` files
 2. Identify significant events, lessons, or insights worth keeping long-term
 3. Update `MEMORY.md` with distilled learnings
@@ -208,6 +211,20 @@ Think of it like a human reviewing their journal and updating their mental model
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
 ## Workflow
+
+### 翻译前预处理：复制中文到英文目录
+
+当老板要求翻译某个产品或某个产品的某个平台时，**首先检查英文目录是否完全没有对应文档**：
+
+1. 如果英文目录下没有任何对应文件（完全空白）：
+   - 将中文目录下的所有 MDX 文件**原样复制**到英文目录下
+   - 立即 commit 一次（仅复制，不做任何翻译修改）
+   - commit message 示例：`Module: Copy Chinese docs to English directory as base`
+   - 之后再开始翻译任务
+
+2. 如果英文目录已有部分文件，则直接开始翻译任务，无需此预处理步骤。
+
+**为什么要这样做：** 复制后先 commit，后续审核 PR 时只需关注中英文内容的差异变更，diff 更加清晰，方便审核。
 
 ### Translation Task Workflow
 

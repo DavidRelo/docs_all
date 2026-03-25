@@ -67,3 +67,5 @@ workspace*/*.7z
 workspace*/*.tar
 workspace*/*.tar.gz
 
+extensions/
+

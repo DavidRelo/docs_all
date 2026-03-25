@@ -207,6 +207,16 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## 文档预览规则
+
+1. 编辑完文件后**不主动**运行 `docuo dev`，除非老板明确要求
+2. 老板要求预览时，使用 `run-zego-docs` skill 启动（`bash run.sh --en` 或 `bash run.sh --zh`），不要直接用 `npx docuo dev`
+3. 启动前先杀掉已有的 docuo/next-server 进程，确保端口空闲
+4. 启动后发送 `http://openclaw.doc.spreading.io:<端口>` 给老板
+
+- 本机域名：`openclaw.doc.spreading.io`
+- 默认端口：3000
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.

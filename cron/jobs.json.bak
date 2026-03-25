@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1774098021756,
+      "updatedAtMs": 1774270856186,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,15 +27,42 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1774184400000,
-        "lastRunAtMs": 1774098000003,
+        "nextRunAtMs": 1774357200000,
+        "lastRunAtMs": 1774270800003,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 21753,
+        "lastDurationMs": 56183,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1774184400002
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fbee8e97-4da6-4057-a4a3-82c9c1cf39a3",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "磁盘使用率检查",
+      "enabled": true,
+      "createdAtMs": 1774328384024,
+      "updatedAtMs": 1774328384024,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查系统磁盘使用率：运行 `df -h /` 并解析使用率百分比。如果超过90%，用 message 工具发送飞书消息通知用户（target: ou_d4acebd410e33fe202a8893454fc30ff, channel: feishu），内容包含磁盘使用详情。如果不超过90%，什么也不用做。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1774346549193
       }
     }
   ]
