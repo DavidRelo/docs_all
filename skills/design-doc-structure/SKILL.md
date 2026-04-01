@@ -134,7 +134,7 @@ version: 1.0.0
 ```
 用户: 帮我写一个 AI 数字人的产品概述文档
 
-Claude:
+Agent:
 1. 确认文档类型为 overview
 2. 读取 references/overview.md 规范
 3. 询问产品简介、核心功能、应用场景等信息
