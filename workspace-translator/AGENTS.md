@@ -37,7 +37,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - Over time, review your daily files and update MEMORY.md with what's worth keeping
 
 ### Daily notes in memory dir
-- **多写日记没坏处，尽可能多总结多写** 
+- **多写日记没坏处，尽可能多总结多写**
 - 当你执行完一个任务后应该简单总结任务的要求和结果记录下来
 - 当你和用户讨论方案并将方案落地后应该将方案核心内容、解决方案以及讨论的核心观点总结记录下来
 
@@ -212,36 +212,45 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 ## Workflow
 
-### 翻译前预处理：复制中文到英文目录
-
-当老板要求翻译某个产品或某个产品的某个平台时，**首先检查英文目录是否完全没有对应文档**：
-
-1. 如果英文目录下没有任何对应文件（完全空白）：
-   - 将中文目录下的所有 MDX 文件**原样复制**到英文目录下
-   - 立即 commit 一次（仅复制，不做任何翻译修改）
-   - commit message 示例：`Module: Copy Chinese docs to English directory as base`
-   - 之后再开始翻译任务
-
-2. 如果英文目录已有部分文件，则直接开始翻译任务，无需此预处理步骤。
-
-**为什么要这样做：** 复制后先 commit，后续审核 PR 时只需关注中英文内容的差异变更，diff 更加清晰，方便审核。
-
 ### Translation Task Workflow
 
 Translation tasks are delegated to child agents via `sessions_spawn`, supporting concurrent multi-session requests.
 
-1. **Create a translation workspace:**
-   ```bash
-   git clone --reference ~/code/docs_all -s ~/code/docs_all ~/code/translation/docs_all_translate_<task_name>
-   cd ~/code/translation/docs_all_translate_<task_name>
-   git remote set-url origin git@github.com:DavidRelo/docs_all.git  # clone --reference 会把 origin 指向本地
-   git remote add upstream git@github.com:zegocloud/docs_all.git 2>/dev/null
-   ```
 
-2. **Prepare the workspace** using `new-zego-docs-workspace` skill:
-   - Sync latest code, create branch from main, clean git state.
+1. 创建翻译任务工作目录
+在开始翻译工作前必须在 ~/code/translation/ 目录下创建一个翻译任务工作目录，并切换到该目录。
+任务名用简短的英文名，比如： `translate_aiagent_v280`,  `translate_xxx`
+```bash
+cp -r ~/code/docs_all ~/code/translation/docs_all_translate_<task_name>
+```
 
-3. **Spawn a child agent to execute translation:**
+2. 准备翻译任务工作区
+- 切换到 docs_all_translate_<task_name>
+- 丢弃所有的变更
+- 使用gh操作origin sync upstream最新内容
+- 将origin最新内容拉取到本地
+- 根据任务名称从 origin 的 main 切换出一个分支进行编辑工作（大部分时候用户会现在上游创建一个分支并告诉你，你应该基于这个分支工作，提PR也提到这个分支）
+
+3. 预处理英文目录（可选）
+当用户要求翻译某个产品或某个产品的某个平台时，**首先检查英文目录是否完全没有对应文档**：
+
+- 如果英文目录下没有任何对应文件（完全空白）：
+   - 将中文目录下的所有文件**原样复制**到英文目录下
+   - 立即 commit 一次（仅复制，不做任何翻译修改）
+   - commit message 示例：`Module: Copy Chinese docs to English directory as base`
+   - 之后再开始翻译任务
+
+- 如果英文目录已有部分文件，则直接开始翻译任务，无需此预处理步骤。
+
+**为什么要这样做：** 复制后先 commit，后续审核 PR 时只需关注中英文内容的差异变更，diff 更加清晰，方便审核。
+
+4. 在 `memory/YYYY-MM-DD.md` 记录任务简介
+- **来源群**：飞书群 chat_id
+- **负责人**：姓名（user_id）
+- 简单总结任务要求
+- 记录翻译工作区目录、分支、时间
+
+5. **在处理批量翻译任务时 Spawn 一个 subagent 来处理实际翻译工作:**
    ```python
    sessions_spawn(
        task="Follow batch-translator skill to execute batch translation. Working directory: ~/code/translation/docs_all_translate_<task_name>",
@@ -251,15 +260,14 @@ Translation tasks are delegated to child agents via `sessions_spawn`, supporting
    )
    ```
 
-4. **Batch translation** → load `batch-translator` skill. **Single file** → load `translate-zh-to-en` skill.
+6. **单文件或者零星几个文件翻译时，直接 load `translate-zh-to-en` skill 进行翻译**
 
-5. **Record work in daily note:** 在 `memory/YYYY-MM-DD.md` 中记录：任务名、文件数、分支名、派发时间
-6. **After translation, commit and create PR:**
+7. **After translation, commit and create PR:**
    - Commit changes in workspace: follow `zego-docs-commit` skill
    - Push to fork: `git push origin <branch>`
    - Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
 
-**Naming conventions:** Short English names, e.g. `v280`, `agent_refactor`, `api_docs`
+**Naming conventions:** Short English names, e.g. `v280`, `agent_refactor`
 
 ### PR 审核意见主动跟进
 
@@ -280,22 +288,22 @@ Translation tasks are delegated to child agents via `sessions_spawn`, supporting
 ]
 ```
 
-**Cron 定时检查**（建议每小时）：
-1. 读取 `memory/pr-tracking.json`
+**创建 Cron Job 定时检查任务**（建议每小时）：
+定时任务要求如下：
+1. 读取 `~/.openclaw/workspace-translator/memory/pr-tracking.json`
 2. 对每个跟踪中的PR，执行 `gh api repos/{repo}/pulls/{pr_number}/comments` 和 `gh pr view {pr_number} --repo {repo} --json reviews`
 3. 对比 `last_comment_timestamp`，检查是否有新评论
-4. **有新评论** → spawn 子agent：根据评论意见修改代码、提交推送、飞书通知老板已修改
+4. **有新评论** → spawn 子agent：根据评论意见修改翻译、提交推送、飞书通知用户翻译已修改
 5. 更新 `last_check` 和 `last_comment_timestamp`
-6. **PR 已合并或关闭** → 从跟踪列表移除
-
-**PR 状态检查**：每次 cron 也检查 PR 的 `state` 字段，merged 或 closed 则自动移除跟踪记录。
+6. **PR 状态检查** → 检查 PR 的 `state` 字段，merged 或 closed 则自动移除跟踪记录。
 
 ## 文档预览规则
 
 1. 编辑完文件后**不主动**运行 `docuo dev`，除非老板明确要求
-2. 老板要求预览时，使用 `run-zego-docs` skill 启动（`bash run.sh --en` 或 `bash run.sh --zh`），不要直接用 `npx docuo dev`
-3. 启动前先杀掉已有的 docuo/next-server 进程，确保端口空闲
-4. 启动后发送 `http://openclaw.doc.spreading.io:<端口>` 给老板
+2. 只能在新文档工作区（根据 new-zego-docs-workspace skill 创建）下运行预览命令。禁止直接在 ~/code/docs_all目录下运行。
+3. 老板要求预览时，使用 `run-zego-docs` skill 启动（`bash run.sh --en` 或 `bash run.sh --zh`），不要直接用 `npx docuo dev`
+4. 启动前先杀掉已有的 docuo/next-server 进程，确保端口空闲
+5. 启动后发送 `http://openclaw.doc.spreading.io:<端口>` 给老板
 
 - 本机域名：`openclaw.doc.spreading.io`
 - 默认端口：3000
