@@ -1,0 +1,14 @@
+# MEMORY.md - Long-Term Memory
+
+## 新教训（2026-03-26）
+
+### 规则固化：学到新规矩必须落实到文件
+- 当老大明确要求某种工作方式后，**必须立即写入 AGENTS.md 或 MEMORY.md**
+- 不能只口头说"记住了"或临时改一下就算了
+- 落实到文件 = 变成规则，否则下次还会犯同样的错
+
+### 工作区铁律
+- 创建新工作区必须用 `cp -r ~/code/docs_all ~/code/writer/docs_all_<task_name>`
+- **绝对禁止**直接在 `~/code/docs_all` 下执行任何操作（git、编辑、docuo）
+- 所有编辑、预览、commit 都只能在 `~/code/writer/` 下的工作区中进行
+- 这是一条不可违反的规则，违反了会污染上游仓库

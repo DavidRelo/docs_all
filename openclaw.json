@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.23-2",
-    "lastTouchedAt": "2026-03-24T06:38:22.622Z"
+    "lastTouchedAt": "2026-03-26T09:44:21.836Z"
   },
   "wizard": {
     "lastRunAt": "2026-03-24T06:38:22.611Z",
@@ -151,6 +151,15 @@
             "nodes"
           ]
         }
+      },
+      {
+        "id": "writer",
+        "name": "writer",
+        "workspace": "/home/oliver/.openclaw/workspace-writer",
+        "agentDir": "/home/oliver/.openclaw/agents/writer/agent",
+        "tools": {
+          "profile": "full"
+        }
       }
     ]
   },
@@ -172,6 +181,14 @@
       "match": {
         "channel": "feishu",
         "accountId": "translator"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "writer",
+      "match": {
+        "channel": "feishu",
+        "accountId": "writer"
       }
     }
   ],
@@ -199,6 +216,11 @@
           "appId": "cli_a930e5de0eb85cc7",
           "appSecret": "HRJchKeIC7EXGhNpKloKAfKP4PtELULf",
           "botName": "翻译助手"
+        },
+        "writer": {
+          "appId": "cli_a94e0c1c7b785cd2",
+          "appSecret": "CInEbQLTIerUBbXr7YCowhDacS2X1vkU",
+          "botName": "写作助手"
         },
         "default": {
           "groupPolicy": "open",
