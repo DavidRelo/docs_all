@@ -266,6 +266,7 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
     {
       "instance_id": "real_time_video_ios_oc_zh",
       "edit_status": "editing/failed/done",
+      "pr_number": 123,
       "pr_status": "open/merged/closed",
       "last_fix_time": "2026-04-08"
     },
@@ -296,34 +297,6 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
 - Push to fork: `git push origin <branch>`
 - Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
 
-### PR 审核意见主动跟进
-
-提交PR后，必须在 `pr-tracking.json`（workspace根目录）中记录：
-
-```json
-[
-  {
-    "pr_number": 123,
-    "repo": "ZEGOCLOUD/docs_all",
-    "branch": "some-branch-name",
-    "workspace": "~/code/writer/docs_all_some_shot_job_name",
-    "task_summary": "编辑AIAgent模块20个文件",
-    "created_at": "2026-03-23",
-    "last_check": null,
-    "last_comment_timestamp": "2026-03-23T10:00:00Z"
-  }
-]
-```
-
-**创建 Cron Job 定时检查任务**（建议每小时）：
-定时任务要求如下：
-1. 读取 `~/.openclaw/workspace-writer/memory/pr-tracking.json`
-2. 对每个跟踪中的PR，执行 `gh api repos/{repo}/pulls/{pr_number}/comments` 和 `gh pr view {pr_number} --repo {repo} --json reviews`
-3. 对比 `last_comment_timestamp`，检查是否有新评论
-4. **有新评论** → spawn 子agent：根据评论意见修改文档、提交推送、飞书通知用户文档已修改
-5. 更新 `last_check` 和 `last_comment_timestamp`
-6. **PR 状态检查** → 检查 PR 的 `state` 字段，merged 或 closed 则自动移除跟踪记录。
-
 
 ## 文档预览规则
 
@@ -343,6 +316,6 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
 3. OSS 路径前缀应与文档所在目录对应（如 `--path core_products/aiagent/zh/android/introduction`）
 4. 环境变量 `DOCUO_USERNAME` 和 `DOCUO_PASSWORD` 在 `~/.bashrc` 中已配置
 
-## Make It Yours
+## 其他规则
 
-This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+- 在飞书群聊中，所有回复尽可能使用 thread-reply 避免大量信息刷屏
