@@ -1,8 +1,8 @@
 {
   "version": 1,
   "socket": {
-    "path": "/home/oliver/.openclaw/exec-approvals.sock",
-    "token": "hLSdh19H8XxTEcGkok52hPQE2m7vcXeD"
+    "path": "/home/doc/.openclaw/exec-approvals.sock",
+    "token": "vEhnbFcHn8iEfWQcPm2KmxITT1bnd8mC"
   },
   "defaults": {},
   "agents": {}

@@ -1,71 +1,38 @@
-# 浏览器实例数据（自动重建）
-browser/
-
-# 日志
-logs/
-
-# 子agent临时数据
-subagents/
-
-# 消息投递队列
-delivery-queue/
-
-# 临时媒体文件
-media/
-
-# 更新检查状态
-update-check.json
-
-# 飞书去重数据
-feishu/dedup/
-
-# 配置备份副本
-openclaw.json.bak*
-
-# 补全缓存
-completions/
-
-# 会话数据（需要时手动迁移）
-agents/*/sessions/
-
-# 认证配置（敏感信息）
-agents/main/agent/auth-profiles.json
-
-# 语义搜索索引（自动重建）
-memory/
-
-# 配对设备信息（新部署需重新配对）
-devices/
-
-# 设备身份（新部署自动生成）
-identity/
-
-# workspace 内的临时文件中转
-workspace*/media-send-to-user/
-
-# workspace 目录下的媒体资源
-workspace*/*.jpg
-workspace*/*.jpeg
-workspace*/*.png
-workspace*/*.gif
-workspace*/*.bmp
-workspace*/*.ico
-workspace*/*.svg
-workspace*/*.webp
-workspace*/*.mp4
-workspace*/*.avi
-workspace*/*.mov
-workspace*/*.mkv
-workspace*/*.webm
-workspace*/*.mp3
-workspace*/*.wav
-workspace*/*.flac
-workspace*/*.aac
-workspace*/*.zip
-workspace*/*.rar
-workspace*/*.7z
-workspace*/*.tar
-workspace*/*.tar.gz
-
+*/.DS_Store
+.vscode/*
+.prettier*
+.DS_Store
+**/__pycache__/
+.scripts/ai_data/data/*
+.scripts/ai_data/venv/*
+.scripts/ai_data/.env
+.scripts/ai_data/update.log
+.scripts/migrate/venv/*
+.scripts/migrate/convert.log
+.scripts/migrate/dist/*
+.scripts/check/sidebars_result.json
+.scripts/check/check_link_result.json
+.scripts/check/link_whitelist.json
+.scripts/check/check_redirect_result.json
+.scripts/check/images
+.scripts/api/raw_data/*
+**/open-api-desc.mdx
+sdk/
+.tmp/
+sample-code
+**/.translation-progress.json
+**/preprocess_result.json
+**/scan_result.json
+**/scan_result_clean.json
+.serena
+package-lock.json
+*.log
+*.test.*
 extensions/
-
+agents/translator/sessions/
+agents/writer/sessions/
+agents/main/sessions/
+cron/runs/
+feishu/dedup/
+logs/
+media/

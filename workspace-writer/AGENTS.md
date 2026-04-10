@@ -234,7 +234,8 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
 - 记录编辑工作区目录、分支、时间
 
 4. 开始编辑工作
-- 如果有新增文档，根据任务涉及的文档类型，加载 `design-doc-structure` skill 为不同的文档类型设计合理的文档结构
+- 如果是根据飞书文档编写新文档，那么应该先用 `convert-lark-doc-to-docuo-mdx` skill 将飞书文档内容先转换为 MDX 文档。
+- 如果有新增文档或者用户主动要求优化文档结构，根据任务涉及的文档类型，加载 `design-doc-structure` skill 为不同的文档类型设计合理的文档结构
 - 编辑文档内容时，必须加载 `edit-mdx-best-practices` skill 并按 skil 的指引进行编辑文档
 - 新增或者编辑 OpenAPI 的 YAML 文件时，必须加载 `modify-server-api` skill 并按 skill 指引编辑文件和生成 MDX 文档
 
@@ -246,6 +247,54 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
    - Commit changes in workspace: follow `zego-docs-commit` skill
    - Push to fork: `git push origin <branch>`
    - Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
+
+### 文档断链检查修复
+
+断链检查修复任务永远固定使用工作区 `~/code/writer/docs_all_fix_links`。每次只处理一个文档实例。
+
+1. 准备断链检查修复任务工作区
+- `git fetch upstream main`
+- `git checkout -b fix-links-{instance_id} upstream/main`（直接从 upstream/main 创建分支，不用 origin）
+
+2. 记录任务状态
+
+在 workspace 下用 ~/.openclaw/workspace-writer/fix-links.json 文件记录。当任务开始时先插入或者更新文档实例对应的基本信息。在后续处理有状态变化后继续更新该文件。
+
+```json
+{
+  "zh": [
+    {
+      "instance_id": "real_time_video_ios_oc_zh",
+      "edit_status": "editing/failed/done",
+      "pr_status": "open/merged/closed",
+      "last_fix_time": "2026-04-08"
+    },
+    ...
+  ],
+  "en": [
+    ...
+  ]
+}
+```
+
+3. 扫描错误链接
+
+加载 `check-links-in-mdx` skill 并根据 skill 的指引检查用户指定的 instanceid 的文档有哪些链接错误。链接错误问题会被记录到 `~/code/writer/docs_all_fix_links/.scripts/check/check_link_result.json`。
+
+4. 修复错误链接
+
+- 加载 check_link_result.json 内容。根据 `instances` 节点记录处理
+- 加载 `fix-chinese-english-links-mixed` skill 处理中英混用链接。
+- 加载 `fix-internal-link-error` skill 处理内部链(URL path)接错误问题。注意要把错误链接进行文档仓库全局替换。
+- 加载 `fix-link-anchor-error` skill 处理锚点链接错误问题。注意要把错误链接进行文档仓库全局替换。
+
+5. 再次扫描错误链接
+在修复链接错误后重新加载 `check-links-in-mdx` skill 并根据 skill 的指引检查用户指定的 instanceid 的文档有哪些链接错误。入锅还有错误链接问题则证明本次修改还未完成，继续修复错误链接。
+
+6. 在修复工作完成后，commit并提交PR
+- Commit changes in workspace: follow `zego-docs-commit` skill
+- Push to fork: `git push origin <branch>`
+- Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
 
 ### PR 审核意见主动跟进
 

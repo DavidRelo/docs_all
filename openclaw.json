@@ -1,115 +1,29 @@
 {
-  "meta": {
-    "lastTouchedVersion": "2026.3.23-2",
-    "lastTouchedAt": "2026-03-26T09:44:21.836Z"
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "a5133a5437f06f07fb86af01205bebc3"
+    },
+    "mode": "local",
+    "port": 19789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true
+    }
   },
   "wizard": {
-    "lastRunAt": "2026-03-24T06:38:22.611Z",
-    "lastRunVersion": "2026.3.23-2",
-    "lastRunCommand": "doctor",
+    "lastRunAt": "2026-04-10T02:32:52.442Z",
+    "lastRunVersion": "2026.4.1",
+    "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
-  "update": {
-    "channel": "stable"
-  },
-  "auth": {
-    "profiles": {
-      "zai:default": {
-        "provider": "zai",
-        "mode": "api_key"
-      }
-    }
-  },
-  "models": {
-    "mode": "merge",
-    "providers": {
-      "zai": {
-        "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
-        "api": "openai-completions",
-        "models": [
-          {
-            "id": "glm-5-turbo",
-            "name": "GLM-5-Turbo",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 204800,
-            "maxTokens": 131072
-          },
-          {
-            "id": "glm-5",
-            "name": "GLM-5",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 204800,
-            "maxTokens": 131072
-          },
-          {
-            "id": "glm-4.7",
-            "name": "GLM-4.7",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 204800,
-            "maxTokens": 131072
-          },
-          {
-            "id": "glm-4.7-flash",
-            "name": "GLM-4.7 Flash",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 204800,
-            "maxTokens": 131072
-          },
-          {
-            "id": "glm-4.7-flashx",
-            "name": "GLM-4.7 FlashX",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 204800,
-            "maxTokens": 131072
-          }
-        ]
-      }
-    }
+  "meta": {
+    "lastTouchedVersion": "2026.4.1",
+    "lastTouchedAt": "2026-04-10T03:17:42.282Z"
   },
   "agents": {
     "defaults": {
@@ -124,7 +38,7 @@
           "alias": "GLM"
         }
       },
-      "workspace": "/home/oliver/.openclaw/workspace",
+      "workspace": "/home/doc/.openclaw/workspace",
       "compaction": {
         "mode": "safeguard",
         "reserveTokensFloor": 40000
@@ -135,36 +49,42 @@
         "id": "main",
         "tools": {
           "profile": "full"
-        }
+        },
+        "sandbox": { "mode": "off" }
       },
       {
         "id": "translator",
         "name": "translator",
-        "workspace": "/home/oliver/.openclaw/workspace-translator",
-        "agentDir": "/home/oliver/.openclaw/agents/translator/agent",
+        "workspace": "/home/doc/.openclaw/workspace-translator",
+        "agentDir": "/home/doc/.openclaw/agents/translator/agent",
         "tools": {
-          "profile": "full",
-          "alsoAllow": [
-            "browser",
-            "canvas",
-            "message",
-            "nodes"
-          ]
-        }
+          "profile": "full"
+        },
+        "sandbox": { "mode": "off" }
       },
       {
         "id": "writer",
         "name": "writer",
-        "workspace": "/home/oliver/.openclaw/workspace-writer",
-        "agentDir": "/home/oliver/.openclaw/agents/writer/agent",
+        "workspace": "/home/doc/.openclaw/workspace-writer",
+        "agentDir": "/home/doc/.openclaw/agents/writer/agent",
         "tools": {
           "profile": "full"
-        }
+        },
+        "sandbox": { "mode": "off" }
       }
     ]
   },
   "tools": {
-    "profile": "coding"
+    "profile": "full",
+    "exec": {
+      "security": "full"
+    },
+    "web": {
+      "search": {
+        "provider": "duckduckgo",
+        "enabled": true
+      }
+    }
   },
   "bindings": [
     {
@@ -210,17 +130,20 @@
         "main": {
           "appId": "cli_a794f990186a500b",
           "appSecret": "GN0YXZ9G8VX9xLHDMs15Og1uWSF6gA4P",
-          "botName": "大总管"
+          "botName": "大总管",
+          "requireMention": true
         },
         "translator": {
           "appId": "cli_a930e5de0eb85cc7",
           "appSecret": "HRJchKeIC7EXGhNpKloKAfKP4PtELULf",
-          "botName": "翻译助手"
+          "botName": "翻译助手",
+          "requireMention": true
         },
         "writer": {
           "appId": "cli_a94e0c1c7b785cd2",
           "appSecret": "CInEbQLTIerUBbXr7YCowhDacS2X1vkU",
-          "botName": "写作助手"
+          "botName": "写作助手",
+          "requireMention": true
         },
         "default": {
           "groupPolicy": "open",
@@ -232,57 +155,246 @@
       }
     }
   },
-  "gateway": {
-    "port": 19789,
-    "mode": "local",
-    "bind": "loopback",
-    "auth": {
-      "mode": "token",
-      "token": "5a74bade9e5a8fdd503a4d6990a80b3d7de9b2bc4ea15832"
-    },
-    "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
-    },
-    "nodes": {
-      "denyCommands": [
-        "camera.snap",
-        "camera.clip",
-        "screen.record",
-        "contacts.add",
-        "calendar.add",
-        "reminders.add",
-        "sms.send"
-      ]
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "zai": {
+        "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-5.1",
+            "name": "GLM-5.1",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 1.2,
+              "output": 4,
+              "cacheRead": 0.24,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202800,
+            "maxTokens": 131100
+          },
+          {
+            "id": "glm-5",
+            "name": "GLM-5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 1,
+              "output": 3.2,
+              "cacheRead": 0.2,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202800,
+            "maxTokens": 131100
+          },
+          {
+            "id": "glm-5-turbo",
+            "name": "GLM-5 Turbo",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 1.2,
+              "output": 4,
+              "cacheRead": 0.24,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202800,
+            "maxTokens": 131100
+          },
+          {
+            "id": "glm-5v-turbo",
+            "name": "GLM-5V Turbo",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 1.2,
+              "output": 4,
+              "cacheRead": 0.24,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202800,
+            "maxTokens": 131100
+          },
+          {
+            "id": "glm-4.7",
+            "name": "GLM-4.7",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.6,
+              "output": 2.2,
+              "cacheRead": 0.11,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.7-flash",
+            "name": "GLM-4.7 Flash",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.07,
+              "output": 0.4,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.7-flashx",
+            "name": "GLM-4.7 FlashX",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.06,
+              "output": 0.4,
+              "cacheRead": 0.01,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 128000
+          },
+          {
+            "id": "glm-4.6",
+            "name": "GLM-4.6",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.6,
+              "output": 2.2,
+              "cacheRead": 0.11,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.6v",
+            "name": "GLM-4.6V",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.3,
+              "output": 0.9,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 32768
+          },
+          {
+            "id": "glm-4.5",
+            "name": "GLM-4.5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.6,
+              "output": 2.2,
+              "cacheRead": 0.11,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 98304
+          },
+          {
+            "id": "glm-4.5-air",
+            "name": "GLM-4.5 Air",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.2,
+              "output": 1.1,
+              "cacheRead": 0.03,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 98304
+          },
+          {
+            "id": "glm-4.5-flash",
+            "name": "GLM-4.5 Flash",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 98304
+          },
+          {
+            "id": "glm-4.5v",
+            "name": "GLM-4.5V",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.6,
+              "output": 1.8,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 64000,
+            "maxTokens": 16384
+          }
+        ]
+      }
     }
   },
-  "skills": {
-    "install": {
-      "nodeManager": "npm"
+  "auth": {
+    "profiles": {
+      "zai:default": {
+        "provider": "zai",
+        "mode": "api_key"
+      }
     }
   },
   "plugins": {
-    "load": {
-      "paths": []
-    },
     "entries": {
       "feishu": {
         "enabled": true
-      }
-    },
-    "installs": {
-      "feishu": {
-        "source": "npm",
-        "spec": "@openclaw/feishu",
-        "installPath": "/home/oliver/.openclaw/extensions/feishu",
-        "version": "2026.3.13",
-        "resolvedName": "@openclaw/feishu",
-        "resolvedVersion": "2026.3.13",
-        "resolvedSpec": "@openclaw/feishu@2026.3.13",
-        "integrity": "sha512-D5vPkgGZ9lfCQnDFlGrQN6NCSUYRgYW9k7amW3qlm9zBI4Sp+alRZVqLZ4yZ2eCXHjw9RVp/L75wjJ7NBQyfEw==",
-        "shasum": "39128ff918f8d3387331818cbe3f8b24a82e4c0d",
-        "resolvedAt": "2026-03-24T06:37:32.705Z",
-        "installedAt": "2026-03-24T06:37:44.330Z"
+      },
+      "browser": {
+        "enabled": true
+      },
+      "duckduckgo": {
+        "enabled": true
       }
     }
   }
