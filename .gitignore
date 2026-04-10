@@ -36,3 +36,4 @@ cron/runs/
 feishu/dedup/
 logs/
 media/
+openclaw.json.*
