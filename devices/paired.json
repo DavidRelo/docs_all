@@ -149,7 +149,7 @@
           "operator.write"
         ],
         "createdAtMs": 1775028947373,
-        "lastUsedAtMs": 1775792617166
+        "lastUsedAtMs": 1775801600826
       }
     },
     "createdAtMs": 1775028947373,
@@ -191,7 +191,7 @@
           "operator.write"
         ],
         "createdAtMs": 1775728636938,
-        "lastUsedAtMs": 1775797712941
+        "lastUsedAtMs": 1775803218563
       }
     },
     "createdAtMs": 1775728636938,
@@ -201,29 +201,42 @@
     "deviceId": "082ea8a872c82aa16ddcdee261037522de1c44beb910e726f387c8d2d09a1fa7",
     "publicKey": "8p-d-XrfLFqTNcIW31vjM1-cVcHc_83w-CkH2l2ctJk",
     "platform": "linux",
-    "clientId": "cli",
-    "clientMode": "probe",
+    "clientId": "gateway-client",
+    "clientMode": "backend",
     "role": "operator",
     "roles": [
       "operator"
     ],
     "scopes": [
-      "operator.read"
+      "operator.read",
+      "operator.admin",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
     ],
     "approvedScopes": [
-      "operator.read"
+      "operator.read",
+      "operator.admin",
+      "operator.write",
+      "operator.approvals",
+      "operator.pairing"
     ],
     "tokens": {
       "operator": {
-        "token": "LrHVX7EOQewteBFs--e2RynudefFeAeQ4WPiqR9QWSc",
+        "token": "iTLHy4jLQOhdgTLh-e4Rai913MtFjyXbbBDc8I9Cym0",
         "role": "operator",
         "scopes": [
-          "operator.read"
+          "operator.admin",
+          "operator.approvals",
+          "operator.pairing",
+          "operator.read",
+          "operator.write"
         ],
-        "createdAtMs": 1775790316448
+        "createdAtMs": 1775790316448,
+        "rotatedAtMs": 1775802896797
       }
     },
     "createdAtMs": 1775790316448,
-    "approvedAtMs": 1775790316448
+    "approvedAtMs": 1775802896797
   }
 }

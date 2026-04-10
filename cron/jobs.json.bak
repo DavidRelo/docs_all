@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1774270856186,
+      "updatedAtMs": 1775790395827,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,14 +27,14 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1774357200000,
-        "lastRunAtMs": 1774270800003,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 56183,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1775826000000,
+        "lastRunAtMs": 1775790361420,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 34407,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
       }
     },
     {
@@ -44,7 +44,7 @@
       "name": "磁盘使用率检查",
       "enabled": true,
       "createdAtMs": 1774328384024,
-      "updatedAtMs": 1774328384024,
+      "updatedAtMs": 1775793797771,
       "schedule": {
         "kind": "cron",
         "expr": "0 */6 * * *",
@@ -62,8 +62,109 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1774346549193
+        "nextRunAtMs": 1775815349193,
+        "lastRunAtMs": 1775793749204,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 48567,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
       }
+    },
+    {
+      "id": "3d489936-4101-48ca-9bc7-44b0b3415191",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "docuo缓存清理",
+      "enabled": true,
+      "createdAtMs": 1774328505188,
+      "updatedAtMs": 1775790425607,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查 ~/.docuo 目录大小：运行 `du -sb ~/.docuo` 获取字节数。如果超过 3GB（3221225472字节），执行 `docuo clear` 清理缓存，然后用 message 工具发送飞书消息通知用户（target: ou_d4acebd410e33fe202a8893454fc30ff, channel: feishu）说已清理。如果不超过3GB，什么也不用做。",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1775847600000,
+        "lastRunAtMs": 1775790395827,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 29780,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "1cc07cbe-4f1c-477d-a345-655a41c9f64c",
+      "name": "nightly-link-check-init",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1775803818154,
+      "updatedAtMs": 1775804991246,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是断链检查定时任务。请按以下步骤执行：\n\n1. 进入 ~/code/writer/docs_all_fix_links 目录，执行：\n   - git checkout main\n   - git fetch upstream main\n   - git reset --hard upstream/main\n   - 丢弃所有本地变更，删除本地和origin除main以外分支\n\n2. 从 docuo.config.zh.json 提取所有 instance id（即 instances 数组中每个元素的 id 字段）\n\n3. 读取 /home/doc/.openclaw/workspace-writer/fix-links.json，提取 zh 数组中所有 instance_id\n\n4. 对比两个列表，找出 docuo.config.zh.json 中存在但 fix-links.json 中不存在的 instance_id（即尚未进行断链检查的实例）\n\n5. 如果存在未检查或需要重新检查的实例：\n   按照 AGENTS.md中的断链检查修复流程对所有中文实例按顺序逐个检查修复。\n\n6. 所有实例都已完成检查（即 docuo.config.zh.json 中的所有实例在 fix-links.json 中都有记录且 edit_status 为 \"done\"）后：\n   - 删除 /home/doc/.openclaw/workspace-writer/fix-links.json\n   - 总结断链修复简报，通知用户所有中文文档实例的断链检查修复工作已完成",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "oc_87ab7f7908a8eb98eb6f8625f4e6fa9b",
+        "accountId": "writer",
+        "bestEffort": false
+      },
+      "state": {
+        "nextRunAtMs": 1775829600000
+      }
+    },
+    {
+      "id": "36149705-2b34-4c29-be68-9b4bd3194dca",
+      "name": "nightly-link-check-init-en",
+      "enabled": true,
+      "createdAtMs": 1775803914565,
+      "updatedAtMs": 1775805081492,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是断链检查定时任务。请按以下步骤执行：\n\n1. 进入 ~/code/writer/docs_all_fix_links 目录，执行：\n   - git checkout main\n   - git fetch upstream main\n   - git reset --hard upstream/main\n   - 丢弃所有本地变更，删除本地和origin除main外所有分支\n\n2. 从 docuo.config.en.json 提取所有 instance id（即 instances 数组中每个元素的 id 字段）\n\n3. 读取 /home/doc/.openclaw/workspace-writer/fix-links.json，提取 en 数组中所有 instance_id\n\n4. 对比两个列表，找出 docuo.config.en.json 中存在但 fix-links.json 中不存在的 instance_id（即尚未进行断链检查的实例）\n\n5. 如果存在未检查或需要重新检查的实例：\n   按照 AGENTS.md中的断链检查修复流程对所有中文实例按顺序逐个检查修复。\n\n6. 所有实例都已完成检查（即 docuo.config.zh.json 中的所有实例在 fix-links.json 中都有记录且 edit_status 为 \"done\"）后：\n   - 删除 /home/doc/.openclaw/workspace-writer/fix-links.json\n   - 总结断链修复简报，通知用户所有中文文档实例的断链检查修复工作已完成",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "oc_87ab7f7908a8eb98eb6f8625f4e6fa9b",
+        "accountId": "writer",
+        "bestEffort": false
+      },
+      "state": {
+        "nextRunAtMs": 1775844000000
+      },
+      "deleteAfterRun": false
     }
   ]
 }

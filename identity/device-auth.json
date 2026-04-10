@@ -3,12 +3,16 @@
   "deviceId": "082ea8a872c82aa16ddcdee261037522de1c44beb910e726f387c8d2d09a1fa7",
   "tokens": {
     "operator": {
-      "token": "LrHVX7EOQewteBFs--e2RynudefFeAeQ4WPiqR9QWSc",
+      "token": "iTLHy4jLQOhdgTLh-e4Rai913MtFjyXbbBDc8I9Cym0",
       "role": "operator",
       "scopes": [
-        "operator.read"
+        "operator.admin",
+        "operator.approvals",
+        "operator.pairing",
+        "operator.read",
+        "operator.write"
       ],
-      "updatedAtMs": 1775791803681
+      "updatedAtMs": 1775807709225
     }
   }
 }
