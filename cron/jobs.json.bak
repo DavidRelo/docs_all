@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1775826052861,
+      "updatedAtMs": 1775998859413,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,11 +27,11 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1775912400000,
-        "lastRunAtMs": 1775826000009,
+        "nextRunAtMs": 1776085200000,
+        "lastRunAtMs": 1775998800004,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 52852,
+        "lastDurationMs": 59409,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -44,7 +44,7 @@
       "name": "磁盘使用率检查",
       "enabled": true,
       "createdAtMs": 1774328384024,
-      "updatedAtMs": 1775836968070,
+      "updatedAtMs": 1776031360364,
       "schedule": {
         "kind": "cron",
         "expr": "0 */6 * * *",
@@ -62,11 +62,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1775858549193,
-        "lastRunAtMs": 1775836949203,
+        "nextRunAtMs": 1776052949193,
+        "lastRunAtMs": 1776031349201,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18867,
+        "lastDurationMs": 11163,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -79,7 +79,7 @@
       "name": "docuo缓存清理",
       "enabled": true,
       "createdAtMs": 1774328505188,
-      "updatedAtMs": 1775790425607,
+      "updatedAtMs": 1776020443655,
       "schedule": {
         "kind": "cron",
         "expr": "0 3 * * *",
@@ -96,15 +96,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1775934000000,
-        "lastRunAtMs": 1775790395827,
+        "nextRunAtMs": 1776106800000,
+        "lastRunAtMs": 1776020400005,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 29780,
-        "lastDelivered": false,
+        "lastDurationMs": 43650,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "runningAtMs": 1775847600006
+        "lastDelivered": false
       }
     },
     {
@@ -113,7 +112,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1775803818154,
-      "updatedAtMs": 1775829813855,
+      "updatedAtMs": 1776002700024,
       "schedule": {
         "kind": "cron",
         "expr": "0 22 * * *",
@@ -134,14 +133,15 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775916000000,
-        "lastRunAtMs": 1775829600006,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 213849,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "nextRunAtMs": 1776088800000,
+        "lastRunAtMs": 1776002400006,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 300018,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
       }
     },
     {
@@ -149,7 +149,7 @@
       "name": "nightly-link-check-init-en",
       "enabled": true,
       "createdAtMs": 1775803914565,
-      "updatedAtMs": 1775844300014,
+      "updatedAtMs": 1776017067414,
       "schedule": {
         "kind": "cron",
         "expr": "0 2 * * *",
@@ -170,15 +170,14 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775930400000,
-        "lastRunAtMs": 1775844000005,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 300009,
-        "lastError": "cron: job execution timed out",
-        "lastErrorReason": "timeout",
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1
+        "nextRunAtMs": 1776103200000,
+        "lastRunAtMs": 1776016800007,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 267407,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       },
       "deleteAfterRun": false
     },
@@ -188,7 +187,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1775805087032,
-      "updatedAtMs": 1775844361882,
+      "updatedAtMs": 1776017322342,
       "schedule": {
         "kind": "cron",
         "expr": "0 2 * * *",
@@ -209,11 +208,11 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775930400000,
-        "lastRunAtMs": 1775844300014,
+        "nextRunAtMs": 1776103200000,
+        "lastRunAtMs": 1776017067414,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 61868,
+        "lastDurationMs": 254928,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -226,20 +225,27 @@
       "name": "docuo cache cleanup",
       "enabled": true,
       "createdAtMs": 1775847626042,
-      "updatedAtMs": 1775847693451,
+      "updatedAtMs": 1776020576826,
       "schedule": {
         "kind": "every",
         "everyMs": 86400000,
         "anchorMs": 1775847626042
       },
-      "sessionTarget": "main",
+      "sessionTarget": "isolated",
       "wakeMode": "now",
       "payload": {
-        "kind": "systemEvent",
-        "text": "execute /home/doc/.openclaw/workspace/check_docuo_cache.sh"
+        "kind": "agentTurn",
+        "message": "Please execute the script /home/doc/.openclaw/workspace/check_docuo_cache.sh to check and clean the docuo cache if it exceeds 3GB"
       },
       "state": {
-        "nextRunAtMs": 1775934026042
+        "nextRunAtMs": 1776106845665,
+        "lastRunAtMs": 1776020445665,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 131161,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastError": "Delivering to Feishu requires target <chatId|user:openId|chat:chatId>"
       }
     }
   ]

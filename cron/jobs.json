@@ -182,43 +182,6 @@
       "deleteAfterRun": false
     },
     {
-      "id": "822f5ed5-7b80-4ec0-ab8d-73396fa6af00",
-      "name": "nightly-link-check-init-en",
-      "enabled": true,
-      "deleteAfterRun": false,
-      "createdAtMs": 1775805087032,
-      "updatedAtMs": 1776017322342,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 2 * * *",
-        "tz": "Asia/Shanghai"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "你是断链检查定时任务。请按以下步骤执行：\n\n1. 进入 ~/code/writer/docs_all_fix_links 目录，执行：\n   - git checkout main\n   - git fetch upstream main\n   - git reset --hard upstream/main\n   - 丢弃所有本地变更，删除本地和origin除main外所有分支\n\n2. 从 docuo.config.en.json 提取所有 instance id（即 instances 数组中每个元素的 id 字段）\n\n3. 读取 /home/doc/.openclaw/workspace-writer/fix-links.json，提取 en 数组中所有 instance_id\n\n4. 对比两个列表，找出 docuo.config.en.json 中存在但 fix-links.json 中不存在的 instance_id（即尚未进行断链检查的实例）\n\n5. 如果存在未检查或需要重新检查的实例：\n   按照 AGENTS.md中的断链检查修复流程对所有中文实例按顺序逐个检查修复。\n\n6. 所有实例都已完成检查（即 docuo.config.zh.json 中的所有实例在 fix-links.json 中都有记录且 edit_status 为 \"done\"）后：\n   - 删除 /home/doc/.openclaw/workspace-writer/fix-links.json\n   - 总结断链修复简报，通知用户所有中文文档实例的断链检查修复工作已完成",
-        "timeoutSeconds": 300
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "feishu",
-        "to": "oc_87ab7f7908a8eb98eb6f8625f4e6fa9b",
-        "accountId": "writer",
-        "bestEffort": false
-      },
-      "state": {
-        "nextRunAtMs": 1776103200000,
-        "lastRunAtMs": 1776017067414,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 254928,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
-      }
-    },
-    {
       "id": "35f1a9af-2bc1-48ae-a327-53edd4821d78",
       "agentId": "main",
       "sessionKey": "agent:main:cron:3d489936-4101-48ca-9bc7-44b0b3415191",

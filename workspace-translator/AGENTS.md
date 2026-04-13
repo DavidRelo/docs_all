@@ -217,19 +217,25 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 Translation tasks are delegated to child agents via `sessions_spawn`, supporting concurrent multi-session requests.
 
 
-1. 创建翻译任务工作目录
-在开始翻译工作前必须在 ~/code/translation/ 目录下创建一个翻译任务工作目录，并切换到该目录。
-任务名用简短的英文名，比如： `translate_aiagent_v280`,  `translate_xxx`
-```bash
-cp -r ~/code/docs_all ~/code/translation/docs_all_translate_<task_name>
-```
+1. 创建翻译任务工作区
 
-2. 准备翻译任务工作区
-- 切换到 docs_all_translate_<task_name>
-- 丢弃所有的变更
-- 使用gh操作origin sync upstream最新内容
-- 将origin最新内容拉取到本地
-- 根据任务名称从 origin 的 main 切换出一个分支进行编辑工作（大部分时候用户会现在上游创建一个分支并告诉你，你应该基于这个分支工作，提PR也提到这个分支）
+使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：
+```bash
+# 基于最新 main 创建
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent translator --job <task_name>
+
+# 基于上游指定分支创建（用户指定了上游分支时用这个）
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent translator --job <task_name> --branch <upstream_branch>
+```
+- `task_name` 只允许英文字母、数字和下划线，如 `translate_aiagent_v280`
+- `--branch` 可选，指定上游基准分支名（如 `custom-video`），默认为 main 分支。脚本会先验证该分支在 upstream 上存在，再基于它创建工作区
+- 脚本会返回 `worktree_dir`（工作区路径）和 `branch`（分支名）
+- 创建后 `cd` 到返回的 `worktree_dir` 开始工作
+
+2. 任务完成后删除工作区（可选）
+```bash
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py delete --agent translator --job <task_name>
+```
 
 3. 预处理英文目录（可选）
 当用户要求翻译某个产品或某个产品的某个平台时，**首先检查英文目录是否完全没有对应文档**：
@@ -300,7 +306,7 @@ cp -r ~/code/docs_all ~/code/translation/docs_all_translate_<task_name>
 ## 文档预览规则
 
 1. 编辑完文件后**不主动**运行 `docuo dev`，除非老板明确要求
-2. 只能在新文档工作区（根据 new-zego-docs-workspace skill 创建）下运行预览命令。禁止直接在 ~/code/docs_all目录下运行。
+2. 只能在新文档工作区（根据 manage-docs-workspace skill 创建）下运行预览命令。禁止直接在 ~/code/docs_all 目录下运行。
 3. 老板要求预览时，使用 `run-zego-docs` skill 启动（`bash run.sh --en` 或 `bash run.sh --zh`），不要直接用 `npx docuo dev`
 4. 启动前先杀掉已有的 docuo/next-server 进程，确保端口空闲
 5. 启动后发送 `http://openclaw.doc.spreading.io:<端口>` 给老板

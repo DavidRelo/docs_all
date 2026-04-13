@@ -213,19 +213,25 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 ### 文档编辑工作流程
 
-1. 创建编辑任务工作目录
-在开始编辑工作前必须在 ~/code/writer/ 目录下创建一个编辑任务工作目录，并切换到该目录。
-任务名用简短的英文名，比如： `v280`, `agent_refactor`, `api_docs`
-```bash
-cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
-```
+1. 创建编辑任务工作区
 
-2. 准备编辑任务工作区
-- 切换到 docs_all_some_shot_job_name
-- 丢弃所有的变更
-- 使用gh操作origin sync upstream最新内容
-- 将origin最新内容拉取到本地
-- 根据任务名称从 origin 的 main 切换出一个分支进行编辑工作（大部分时候用户会现在上游创建一个分支并告诉你，你应该基于这个分支工作，提PR也提到这个分支）
+使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：
+```bash
+# 基于最新 main 创建
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent writer --job <task_name>
+
+# 基于上游指定分支创建（用户指定了上游分支时用这个）
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent writer --job <task_name> --branch <upstream_branch>
+```
+- `task_name` 只允许英文字母、数字和下划线，如 `v280`, `agent_refactor`, `api_docs`
+- `--branch` 可选，指定上游基准分支名（如 `custom-video`），默认为 main 分支。脚本会先验证该分支在 upstream 上存在，再基于它创建工作区
+- 脚本会返回 `worktree_dir`（工作区路径）和 `branch`（分支名）
+- 创建后 `cd` 到返回的 `worktree_dir` 开始工作
+
+2. 任务完成后删除工作区（可选）
+```bash
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py delete --agent writer --job <task_name>
+```
 
 3. 在 `memory/YYYY-MM-DD.md` 记录任务简介
 - **来源群**：飞书群 chat_id
@@ -301,7 +307,7 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
 ## 文档预览规则
 
 1. 编辑完文件后**不主动**运行 `docuo dev`，除非老板明确要求
-2. 只能在 `~/code/writer/` 下的新文档工作区中操作和运行预览。**绝对禁止**直接在 `~/code/docs_all` 目录下执行任何 git 操作、文件编辑或启动 docuo。
+2. 只能在 worktree 工作区（根据 manage-docs-workspace skill 创建）中操作和运行预览。**绝对禁止**直接在 `~/code/docs_all` 目录下执行任何 git 操作、文件编辑或启动 docuo。
 3. 老板要求预览时，使用 `run-zego-docs` skill 启动（`bash run.sh --en` 或 `bash run.sh --zh`），不要直接用 `npx docuo dev`
 4. 启动前先杀掉已有的 docuo/next-server 进程，确保端口空闲
 5. 启动后发送 `http://openclaw.doc.spreading.io:<端口>` 给老板
@@ -319,3 +325,4 @@ cp -r ~/code/docs_all ~/code/writer/docs_all_some_shot_job_name
 ## 其他规则
 
 - 在飞书群聊中，所有回复尽可能使用 thread-reply 避免大量信息刷屏
+- 禁止将文档目录`docs_all*`拷贝到 `~/.openclaw`及其子目录
