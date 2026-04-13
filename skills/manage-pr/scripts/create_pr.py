@@ -66,7 +66,8 @@ def build_title(products: list[int], desc: str) -> str:
     return f"[{prefix}] {desc}"
 
 
-def build_body(products: list[int], desc: str, issues: list[str]) -> str:
+def build_body(products: list[int], desc: str, issues: list[str],
+               agent_id: str, session_id: str, working_dir: str) -> str:
     # Build product checkboxes
     all_products = [
         (1, "RTC", "实时音视频/实时语音/超低延迟直播"),
@@ -97,6 +98,15 @@ def build_body(products: list[int], desc: str, issues: list[str]) -> str:
     else:
         issue_section = "无"
 
+    # Build metadata section
+    metadata = (
+        "<!-- metadata\n"
+        f"agent-id: {agent_id}\n"
+        f"session-id: {session_id}\n"
+        f"working-dir: {working_dir}\n"
+        "-->\n"
+    )
+
     return f"""## 涉及产品
 
 {product_section}
@@ -108,13 +118,15 @@ def build_body(products: list[int], desc: str, issues: list[str]) -> str:
 ## 相关 Issue
 
 {issue_section}
-"""
+
+{metadata}"""
 
 
 def main():
     parser = argparse.ArgumentParser(description="Create a PR and record it")
     parser.add_argument("--agent-id", required=True, help="Agent identifier")
     parser.add_argument("--session-id", required=True, help="Session identifier")
+    parser.add_argument("--working-dir", required=True, help="Working directory of the agent")
     parser.add_argument("--products", nargs="+", type=int, required=True,
                         help="Product numbers (1-10), space-separated")
     parser.add_argument("--desc", required=True, help="Change description")
@@ -142,20 +154,63 @@ def main():
         sys.exit(1)
 
     # Build PR body
-    body = build_body(args.products, args.desc, args.issues)
+    body = build_body(args.products, args.desc, args.issues,
+                      args.agent_id, args.session_id, args.working_dir)
+
+    # Ensure working dir is a git repo and push current branch to origin
+    try:
+        subprocess.run(["git", "rev-parse", "--git-dir"], cwd=args.working_dir,
+                       capture_output=True, check=True)
+    except subprocess.CalledProcessError:
+        print(f"Error: {args.working_dir} is not a git repository", file=sys.stderr)
+        sys.exit(1)
+
+    # Get current branch name
+    branch_result = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                                   cwd=args.working_dir, capture_output=True, text=True, check=True)
+    branch = branch_result.stdout.strip()
+
+    # Get origin remote URL to derive fork owner
+    remote_result = subprocess.run(["git", "remote", "get-url", "origin"],
+                                   cwd=args.working_dir, capture_output=True, text=True, check=True)
+    origin_url = remote_result.stdout.strip()
+
+    # Parse fork owner from origin URL (support both SSH and HTTPS)
+    # SSH: git@github.com:Owner/repo.git  HTTPS: https://github.com/Owner/repo.git
+    fork_match = re.search(r"(?:[:/])([^/]+)/[^/]+?\.git$", origin_url)
+    if not fork_match:
+        fork_match = re.search(r"(?:[:/])([^/]+)/([^/]+)$", origin_url)
+    fork_owner = fork_match.group(1) if fork_match else None
+
+    if not fork_owner:
+        print(f"Error: Could not parse fork owner from origin URL: {origin_url}", file=sys.stderr)
+        sys.exit(1)
+
+    # Parse repo name
+    repo_name = args.repo.split("/")[-1] if "/" in args.repo else args.repo
+
+    # Push branch to origin (fork)
+    try:
+        subprocess.run(["git", "push", "origin", branch], cwd=args.working_dir,
+                       capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Failed to push to origin: {e.stderr.strip()}", file=sys.stderr)
+        sys.exit(1)
 
     # Write body to temp file
     body_file = "/tmp/pr-body.md"
     with open(body_file, "w", encoding="utf-8") as f:
         f.write(body)
 
-    # Create PR via gh CLI
+    # Create PR via gh CLI with --head pointing to fork branch
+    head = f"{fork_owner}:{branch}"
     cmd = [
         "gh", "pr", "create",
         "--title", title,
         "--body-file", body_file,
         "--repo", args.repo,
         "--base", args.base,
+        "--head", head,
     ]
 
     try:
@@ -188,7 +243,7 @@ def main():
         "session_id": args.session_id,
         "status": "open",
         "time": now,
-        "working_dir": os.getcwd(),
+        "working_dir": args.working_dir,
         "desc": args.desc,
         "products": [PRODUCT_MAP[p] for p in args.products],
     }

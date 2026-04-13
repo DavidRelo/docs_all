@@ -40,13 +40,29 @@ python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py de
 
 强制移除 worktree 目录和对应分支。输出同格式的 JSON，`status` 为 `"deleted"`。
 
+### 安全清除（--save-clear）
+
+```bash
+python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py delete --save-clear
+```
+
+自动发现并清理已关闭PR对应的所有工作区，无需指定 `--agent`/`--job`。执行流程：
+
+1. 查询 `ZEGOCLOUD/docs_all` 最近一周已关闭的PR
+2. 提取 PR 来源分支名，与本地 worktree 分支对比
+3. 匹配到的每个工作区依次执行：
+   - 删除 origin 远端分支
+   - 删除 docuo 预览目录（`~/.docuo/{worktree-dir}-docuo-template/`）
+   - 删除本地 worktree 目录和分支
+
 ## 参数说明
 
 | 参数 | 必填 | 说明 |
 |------|------|------|
-| `--agent` | 是 | agent 名称（如 `writer`, `translator`） |
-| `--job` | 是 | 任务名称，仅允许英文字母、数字和下划线 |
+| `--agent` | 是* | agent 名称（如 `writer`, `translator`） |
+| `--job` | 是* | 任务名称，仅允许英文字母、数字和下划线 |
 | `--branch` | 否 | 上游基准分支名（如 `custom-video`），不指定则基于 main |
+| `--save-clear` | 否 | 安全清除模式，自动发现并清理已关闭PR的工作区（此时 `--agent`/`--job` 不需要） |
 
 ## 命名规则
 

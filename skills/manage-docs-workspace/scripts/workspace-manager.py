@@ -7,8 +7,10 @@
 """
 
 import argparse
+import datetime
 import json
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -177,6 +179,12 @@ def create_worktree(agent, job, upstream_branch=None):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def _remove_worktree(worktree_dir, branch):
+    """底层 worktree 删除：移除 worktree 目录 + 本地分支。"""
+    run_git("worktree", "remove", str(worktree_dir), "--force")
+    run_git("branch", "-D", branch)
+
+
 def delete_worktree(agent, job):
     """删除文档工作区 worktree。"""
     branch = job
@@ -186,11 +194,7 @@ def delete_worktree(agent, job):
         print(f"错误: 工作区目录不存在: {worktree_dir}", file=sys.stderr)
         sys.exit(1)
 
-    # 移除 worktree
-    run_git("worktree", "remove", str(worktree_dir), "--force")
-
-    # 删除分支
-    run_git("branch", "-D", branch)
+    _remove_worktree(worktree_dir, branch)
 
     result = {
         "status": "deleted",
@@ -198,6 +202,98 @@ def delete_worktree(agent, job):
         "branch": branch,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def _parse_worktree_list(output):
+    """解析 git worktree list --porcelain 输出。"""
+    worktrees = []
+    current = {}
+    for line in output.strip().splitlines():
+        if line.startswith("worktree "):
+            if current:
+                worktrees.append(current)
+            current = {"path": line.split(" ", 1)[1]}
+        elif line.startswith("branch "):
+            ref = line.split(" ", 1)[1]
+            current["branch"] = ref.replace("refs/heads/", "")
+    if current:
+        worktrees.append(current)
+    return worktrees
+
+
+def save_clear():
+    """安全清除已关闭PR对应的工作区、远端分支和预览目录。"""
+    # 1. 拉取 ZEGOCLOUD/docs_all 最近一周的已关闭PR
+    one_week_ago = (datetime.date.today() - datetime.timedelta(days=7)).isoformat()
+    print(f"查询 ZEGOCLOUD/docs_all 最近一周已关闭的PR...")
+
+    result = run_gh(
+        "pr", "list",
+        "--repo", "ZEGOCLOUD/docs_all",
+        "--state", "closed",
+        "--json", "headRefName,number,title",
+        "--search", f"closed:>={one_week_ago}",
+        "--limit", "100",
+    )
+
+    if result.returncode != 0:
+        print(f"错误: 查询PR失败", file=sys.stderr)
+        sys.exit(1)
+
+    closed_prs = json.loads(result.stdout) if result.stdout.strip() else []
+    if not closed_prs:
+        print("没有找到已关闭的PR")
+        return
+
+    pr_branches = {}
+    for pr in closed_prs:
+        head_ref = pr.get("headRefName", "")
+        if head_ref:
+            pr_branches[head_ref] = pr
+            print(f"  PR #{pr.get('number')}: {head_ref} - {pr.get('title', '')}")
+
+    # 2. 获取本地 worktree 列表
+    wt_result = run_git("worktree", "list", "--porcelain")
+    worktrees = _parse_worktree_list(wt_result.stdout)
+
+    # 3. 匹配并清除
+    cleaned = []
+    for wt in worktrees:
+        branch = wt.get("branch", "")
+        wt_path = Path(wt["path"])
+
+        # 跳过主仓库和不匹配的分支
+        if wt_path.resolve() == MAIN_REPO.resolve() or branch not in pr_branches:
+            continue
+
+        wt_dirname = wt_path.name
+        print(f"\n清理工作区: {wt_dirname} (分支: {branch})")
+
+        # 删除 origin 远端分支
+        print(f"  删除远端分支 origin/{branch}...")
+        run_git("push", "origin", "--delete", branch, check=False)
+
+        # 删除 docuo 构建目录
+        docuo_dir = Path.home() / ".docuo" / f"{wt_dirname}-docuo-template"
+        if docuo_dir.exists():
+            print(f"  删除预览目录: {docuo_dir}")
+            shutil.rmtree(docuo_dir)
+
+        # 执行实际的 worktree 删除（本地分支 + worktree 目录）
+        _remove_worktree(wt_path, branch)
+
+        cleaned.append({
+            "status": "deleted",
+            "worktree_dir": str(wt_path),
+            "branch": branch,
+        })
+
+    if not cleaned:
+        print("没有匹配的工作区需要清理")
+    else:
+        print(f"\n共清理 {len(cleaned)} 个工作区:")
+        for r in cleaned:
+            print(json.dumps(r, ensure_ascii=False))
 
 
 def main():
@@ -212,13 +308,12 @@ def main():
 
     # delete 子命令
     delete_parser = subparsers.add_parser("delete", help="删除工作区")
-    delete_parser.add_argument("--agent", required=True, help="agent 名称")
-    delete_parser.add_argument("--job", required=True, help="任务名称（仅英文下划线）")
+    delete_parser.add_argument("--agent", default=None, help="agent 名称")
+    delete_parser.add_argument("--job", default=None, help="任务名称（仅英文下划线）")
+    delete_parser.add_argument("--save-clear", action="store_true",
+                               help="安全清除已关闭PR的工作区（自动发现，无需 --agent/--job）")
 
     args = parser.parse_args()
-
-    # 校验参数
-    validate_params(args.agent, args.job)
 
     # 确保主仓库存在
     if not MAIN_REPO.exists():
@@ -226,9 +321,17 @@ def main():
         sys.exit(1)
 
     if args.action == "create":
+        validate_params(args.agent, args.job)
         create_worktree(args.agent, args.job, getattr(args, "branch", None))
     elif args.action == "delete":
-        delete_worktree(args.agent, args.job)
+        if getattr(args, "save_clear", False):
+            save_clear()
+        else:
+            if not args.agent or not args.job:
+                print("错误: 需要 --agent 和 --job，或使用 --save-clear", file=sys.stderr)
+                sys.exit(1)
+            validate_params(args.agent, args.job)
+            delete_worktree(args.agent, args.job)
 
 
 if __name__ == "__main__":

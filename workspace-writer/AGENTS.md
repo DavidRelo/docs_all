@@ -213,6 +213,8 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 ### 文档编辑工作流程
 
+当用户说有新编辑任务，看看这个问题，改一下这个/这些文档。那么就按找个文档编辑流程来走。
+
 1. 创建编辑任务工作区
 
 使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：
@@ -252,41 +254,19 @@ python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py de
 6. 在编辑工作完成后，commit并提交PR：
    - Commit changes in workspace: follow `zego-docs-commit` skill
    - Push to fork: `git push origin <branch>`
-   - Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
+   - Create PR to upstream: follow `manage-pr` skill
 
 ### 文档断链检查修复
 
-断链检查修复任务永远固定使用工作区 `~/code/writer/docs_all_fix_links`。每次只处理一个文档实例。
+1. 使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：
+- task_name总以check_link_{date_time}为名
 
-1. 准备断链检查修复任务工作区
-- `git fetch upstream main`
-- `git checkout -b fix-links-{instance_id} upstream/main`（直接从 upstream/main 创建分支，不用 origin）
-
-2. 记录任务状态
-
-在 workspace 下用 ~/.openclaw/workspace-writer/fix-links.json 文件记录。当任务开始时先插入或者更新文档实例对应的基本信息。在后续处理有状态变化后继续更新该文件。
-
-```json
-{
-  "zh": [
-    {
-      "instance_id": "real_time_video_ios_oc_zh",
-      "edit_status": "editing/failed/done",
-      "pr_number": 123,
-      "pr_status": "open/merged/closed",
-      "last_fix_time": "2026-04-08"
-    },
-    ...
-  ],
-  "en": [
-    ...
-  ]
-}
-```
+2. 确定要检查链接的实例或者文件
+- 如果用户已经指定了要检查哪个实例或者某个目录、文件，则按用户指定的进行检查修复
+- 如果用户没指明，只是说了要检查断链修复，那么加载 `check-links-in-mdx` skill 并按“Batch Processing Workflow”章节主动挑选5个实例开始检查和修复
 
 3. 扫描错误链接
-
-加载 `check-links-in-mdx` skill 并根据 skill 的指引检查用户指定的 instanceid 的文档有哪些链接错误。链接错误问题会被记录到 `~/code/writer/docs_all_fix_links/.scripts/check/check_link_result.json`。
+根据 `check-links-in-mdx`  skill 的指引检查 instanceid 、目录或者文件有哪些链接错误。链接错误问题会被记录到 `/tmp/check_link_result.json`。
 
 4. 修复错误链接
 
@@ -296,12 +276,12 @@ python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py de
 - 加载 `fix-link-anchor-error` skill 处理锚点链接错误问题。注意要把错误链接进行文档仓库全局替换。
 
 5. 再次扫描错误链接
-在修复链接错误后重新加载 `check-links-in-mdx` skill 并根据 skill 的指引检查用户指定的 instanceid 的文档有哪些链接错误。入锅还有错误链接问题则证明本次修改还未完成，继续修复错误链接。
+在修复链接错误后重新加载 `check-links-in-mdx` skill 并根据 skill 的指引检查 instanceid 、目录或者文件有哪些链接错误。如果还有错误链接问题则证明本次修改还未完成，继续修复错误链接。
 
 6. 在修复工作完成后，commit并提交PR
 - Commit changes in workspace: follow `zego-docs-commit` skill
 - Push to fork: `git push origin <branch>`
-- Create PR to upstream: `gh pr create --repo ZEGOCLOUD/docs_all --title "..." --body "..."` follow `create-zego-docs-pr` skill
+- Create PR to upstream: follow `manage-pr` skill
 
 
 ## 文档预览规则
@@ -322,7 +302,8 @@ python3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py de
 3. OSS 路径前缀应与文档所在目录对应（如 `--path core_products/aiagent/zh/android/introduction`）
 4. 环境变量 `DOCUO_USERNAME` 和 `DOCUO_PASSWORD` 在 `~/.bashrc` 中已配置
 
-## 其他规则
+## 铁律
 
+- 创建 pr 必须使用 skill 提供的脚本完成操作。遇到报错时排查解决或向老大求助，禁止绕过 skill 直接用底层命令替代
 - 在飞书群聊中，所有回复尽可能使用 thread-reply 避免大量信息刷屏
 - 禁止将文档目录`docs_all*`拷贝到 `~/.openclaw`及其子目录

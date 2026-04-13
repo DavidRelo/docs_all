@@ -31,12 +31,15 @@ Use `create_pr.py` to create a PR and record it.
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `--agent-id` | Yes | Your agent identifier (e.g., "writer", "translator", "main") |
-| `--session-id` | Yes | Current session identifier |
+| `--session-id` | Yes | OpenClaw current session identifier |
+| `--working-dir` | Yes | Agent's working directory(worktree_dir) |
 | `--products` | Yes | Product numbers (1-10), space-separated |
 | `--desc` | Yes | Change description (must be ASCII) |
 | `--issues` | No | Issue numbers, space-separated |
 | `--repo` | No | Target repo (default: ZEGOCLOUD/docs_all) |
 | `--base` | No | Base branch (default: main) |
+
+> **Note:** The script automatically pushes the current branch to `origin` (fork) before creating the PR, and sets `--head` to `fork_owner:branch` for cross-fork PR creation.
 
 ### Product Numbers
 
@@ -58,7 +61,8 @@ Use `create_pr.py` to create a PR and record it.
 ```bash
 python3 ~/.openclaw/skills/manage-pr/scripts/create_pr.py \
     --agent-id writer \
-    --session-id "my-session-123" \
+    --session-id "c46993dd-7647-45ba-a24e-f232b139ec4b" \
+    --working-dir "/home/doc/code/writer/docs_all_v280" \
     --products 1 3 \
     --desc "Add new API docs for RTC and AIAgent" \
     --issues 1234 5678
