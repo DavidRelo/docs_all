@@ -1,663 +1,257 @@
 {
   "zh": [
     {
-      "instance_id": "real_time_video_ios_oc_zh",
-      "edit_status": "done",
-      "pr_status": "merged",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_ios_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_number": 1230,
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_android_java_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_number": 1229,
-      "last_fix_time": "2026-04-09"
-    },
-    {
       "instance_id": "aiagent_android_zh",
       "edit_status": "done",
-      "pr_status": "skipped",
-      "last_fix_time": "2026-04-09",
-      "notes": "Link validation completed: 0 broken links found in 8 MDX files. No fixes needed."
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "aiagent_flutter_zh",
       "edit_status": "done",
-      "pr_status": "skipped",
-      "last_fix_time": "2026-04-09",
-      "notes": "Link validation completed: 0 broken links found in 7 MDX files. No fixes needed."
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "aiagent_ios_zh",
-      "edit_status": "editing",
-      "pr_status": "",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_android_kotlin_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_aiagent_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_aiagent_flutter_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_macos_oc_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1233",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_macos_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1234",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_macos_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_windows_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1235",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_windows_cs_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1236",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_harmonyos_arkts_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1231",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_linux_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_linux_java_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_web_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1232",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_miniprogram_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_flutter_dart_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1237"
-    },
-    {
-      "instance_id": "real_time_video_electron_js_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_ue_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_u3d_cs_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1239"
-    },
-    {
-      "instance_id": "real_time_video_uniapp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_rn_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_video_cocos_creator_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1238"
-    },
-    {
-      "instance_id": "real_time_voice_video_server_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1240"
-    },
-    {
-      "instance_id": "real_time_voice_ios_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1241"
-    },
-    {
-      "instance_id": "real_time_voice_ios_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1242"
-    },
-    {
-      "instance_id": "real_time_voice_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_android_kotlin_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_macos_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1243"
-    },
-    {
-      "instance_id": "real_time_voice_macos_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1244"
-    },
-    {
-      "instance_id": "real_time_voice_macos_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_windows_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_harmonyos_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_linux_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_miniprogram_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_flutter_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_electron_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_ue_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_u3d_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_uniapp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_rn_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_cocos_creator_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "real_time_voice_server_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_ios_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1245"
-    },
-    {
-      "instance_id": "live_streaming_ios_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1246"
-    },
-    {
-      "instance_id": "live_streaming_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_android_kotlin_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_macos_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1247"
-    },
-    {
-      "instance_id": "live_streaming_macos_swift_zh",
-      "edit_status": "done",
-      "pr_status": "open",
-      "last_fix_time": "2026-04-09",
-      "pr_url": "https://github.com/ZEGOCLOUD/docs_all/pull/1248"
-    },
-    {
-      "instance_id": "live_streaming_macos_cpp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_windows_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_linux_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_flutter_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_electron_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_u3d_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_uniapp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_rn_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_server_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_harmonyos_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_flutter_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_macos_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_rn_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_u3d_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_windows_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_miniprogram_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_uniapp_x_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "zim_server_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "callkit_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "callkit_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "callkit_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "callkit_miniprogram_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "callkit_uniapp_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_kit_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_kit_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_streaming_kit_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_audio_room_kit_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "live_audio_room_kit_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "in_app_chat_kit_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "in_app_chat_kit_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_ios_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_android_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_web_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_flutter_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_electron_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_rn_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "super_board_server_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
-      "instance_id": "cloud_player_zh",
+      "instance_id": "aiagent_mini_program_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
-      "instance_id": "cloud_player_server_zh",
+      "instance_id": "aiagent_server_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
-      "instance_id": "ai_effects_ios_objc_zh",
+      "instance_id": "aiagent_web_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "ai_effects_android_java_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "ai_effects_macos_objc_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "ai_effects_macos_c_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    },
-    {
-      "instance_id": "ai_effects_windows_c_zh",
-      "edit_status": "done",
-      "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "ai_effects_flutter_dart_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_effects_ios_objc_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_effects_macos_c_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_effects_macos_objc_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "ai_effects_react_native_javascript_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_effects_windows_c_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "aiagent_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_effects_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "aigc_digital_human_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai-voice_changer_android_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_voice_changer_flutter_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_voice_changer_ios_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "ai_voice_changer_windows_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "analytics_dashboard_server_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "analytics_dashboard_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "callkit_android_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "callkit_ios_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "callkit_miniprogram_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "callkit_uniapp_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "callkit_web_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "cloud_player_server_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "cloud_player_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "cloud_realtime_asr_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "cloud_recording_server_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "cloud_recording_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "console_new_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
     },
     {
       "instance_id": "console_old_zh",
       "edit_status": "done",
       "pr_status": "clean",
-      "last_fix_time": "2026-04-09"
-    }
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "faq_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "glossary_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "in_app_chat_kit_android_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "in_app_chat_kit_ios_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "live_audio_room_kit_android_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "live_audio_room_kit_ios_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "live_streaming_android_kotlin_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
+    {
+      "instance_id": "live_streaming_android_zh",
+      "edit_status": "done",
+      "pr_status": "clean",
+      "last_fix_time": "2026-04-12T22:04:50+08:00"
+    },
   ],
   "en": []
 }

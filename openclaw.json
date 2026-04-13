@@ -126,6 +126,9 @@
       "enabled": true,
       "connectionMode": "websocket",
       "domain": "feishu",
+      "mediaMaxMb": 100,
+      "streaming": true,
+      "blockStreaming": true,
       "accounts": {
         "main": {
           "appId": "cli_a794f990186a500b",

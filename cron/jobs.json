@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1775790395827,
+      "updatedAtMs": 1775998859413,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,14 +27,14 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1775826000000,
-        "lastRunAtMs": 1775790361420,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 34407,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 2,
-        "lastError": "Channel is required (no configured channels detected). Set delivery.channel explicitly or use a main session with a previous channel."
+        "nextRunAtMs": 1776085200000,
+        "lastRunAtMs": 1775998800004,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 59409,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -44,7 +44,7 @@
       "name": "磁盘使用率检查",
       "enabled": true,
       "createdAtMs": 1774328384024,
-      "updatedAtMs": 1775793797771,
+      "updatedAtMs": 1776031360364,
       "schedule": {
         "kind": "cron",
         "expr": "0 */6 * * *",
@@ -62,11 +62,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1775815349193,
-        "lastRunAtMs": 1775793749204,
+        "nextRunAtMs": 1776052949193,
+        "lastRunAtMs": 1776031349201,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 48567,
+        "lastDurationMs": 11163,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -79,7 +79,7 @@
       "name": "docuo缓存清理",
       "enabled": true,
       "createdAtMs": 1774328505188,
-      "updatedAtMs": 1775790425607,
+      "updatedAtMs": 1776020443655,
       "schedule": {
         "kind": "cron",
         "expr": "0 3 * * *",
@@ -96,14 +96,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1775847600000,
-        "lastRunAtMs": 1775790395827,
+        "nextRunAtMs": 1776106800000,
+        "lastRunAtMs": 1776020400005,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 29780,
-        "lastDelivered": false,
+        "lastDurationMs": 43650,
         "lastDeliveryStatus": "not-delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "lastDelivered": false
       }
     },
     {
@@ -112,7 +112,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1775803818154,
-      "updatedAtMs": 1775804991246,
+      "updatedAtMs": 1776002700024,
       "schedule": {
         "kind": "cron",
         "expr": "0 22 * * *",
@@ -133,7 +133,15 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775829600000
+        "nextRunAtMs": 1776088800000,
+        "lastRunAtMs": 1776002400006,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 300018,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
       }
     },
     {
@@ -141,7 +149,7 @@
       "name": "nightly-link-check-init-en",
       "enabled": true,
       "createdAtMs": 1775803914565,
-      "updatedAtMs": 1775805136559,
+      "updatedAtMs": 1776017067414,
       "schedule": {
         "kind": "cron",
         "expr": "0 2 * * *",
@@ -162,7 +170,14 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775844000000
+        "nextRunAtMs": 1776103200000,
+        "lastRunAtMs": 1776016800007,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 267407,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       },
       "deleteAfterRun": false
     },
@@ -172,7 +187,7 @@
       "enabled": true,
       "deleteAfterRun": false,
       "createdAtMs": 1775805087032,
-      "updatedAtMs": 1775805087032,
+      "updatedAtMs": 1776017322342,
       "schedule": {
         "kind": "cron",
         "expr": "0 2 * * *",
@@ -193,7 +208,44 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1775844000000
+        "nextRunAtMs": 1776103200000,
+        "lastRunAtMs": 1776017067414,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 254928,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "35f1a9af-2bc1-48ae-a327-53edd4821d78",
+      "agentId": "main",
+      "sessionKey": "agent:main:cron:3d489936-4101-48ca-9bc7-44b0b3415191",
+      "name": "docuo cache cleanup",
+      "enabled": true,
+      "createdAtMs": 1775847626042,
+      "updatedAtMs": 1776020576826,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 86400000,
+        "anchorMs": 1775847626042
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Please execute the script /home/doc/.openclaw/workspace/check_docuo_cache.sh to check and clean the docuo cache if it exceeds 3GB"
+      },
+      "state": {
+        "nextRunAtMs": 1776106845665,
+        "lastRunAtMs": 1776020445665,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 131161,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastError": "Delivering to Feishu requires target <chatId|user:openId|chat:chatId>"
       }
     }
   ]
