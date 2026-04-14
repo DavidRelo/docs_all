@@ -36,10 +36,10 @@ import sys
 import json
 import re
 
-# 将 .scripts/check 目录加入 path，以便从 check_links.py 导入工具函数
+# 将 check-links-in-mdx 的 scripts 目录加入 path，以便从 check_links.py 导入工具函数
 _SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.normpath(os.path.join(_SKILL_DIR, '..', '..', '..', '..'))
-sys.path.insert(0, os.path.join(REPO_ROOT, '.scripts', 'check'))
+CHECK_LINKS_ROOT = os.path.normpath(os.path.join(_SKILL_DIR, '..', '..', '..', 'check-links-in-mdx', 'scripts'))
+sys.path.insert(0, CHECK_LINKS_ROOT)
 from check_links import (
     heading_to_anchor,
     extract_paramfield_anchors,

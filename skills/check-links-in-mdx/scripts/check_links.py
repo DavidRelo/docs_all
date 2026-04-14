@@ -48,6 +48,12 @@ from pathlib import Path
 # 全局变量：工作区目录（包含 docuo.config.*.json 的目录），由 main() 设置
 _WORKTREE_DIR = None
 
+# 支持的文件扩展名
+MARKDOWN_EXTENSIONS = ('.md', '.mdx')
+YAML_EXTENSIONS = ('.yaml', '.yml')
+CODE_EXTENSIONS = ('.jsx', '.js', '.ts', '.tsx')
+ALL_DOC_EXTENSIONS = MARKDOWN_EXTENSIONS + YAML_EXTENSIONS
+
 # 终端彩色输出
 try:
     from colorama import init, Fore, Style
@@ -132,9 +138,9 @@ def get_git_changed_files():
         )
         changed_files = result.stdout.strip().split('\n') if result.stdout.strip() else []
 
-        # 过滤出md/mdx文件
-        md_files = [f for f in changed_files if f.lower().endswith(('.md', '.mdx'))]
-        return md_files
+        # 过滤出md/mdx/yaml文件
+        doc_files = [f for f in changed_files if f.lower().endswith(ALL_DOC_EXTENSIONS)]
+        return doc_files
     except subprocess.CalledProcessError:
         print(f'{Fore.RED}获取git变更文件失败，请确保在git仓库中运行{Style.RESET_ALL}')
         return []
@@ -328,12 +334,13 @@ def choose_instance(instances, config):
             print('输入无效，请重新输入。')
 
 def find_mdx_files(root_path):
-    mdx_files = []
+    """发现所有文档文件（md/mdx/yaml/yml）。保留旧函数名以兼容调用方。"""
+    doc_files = []
     for dirpath, _, filenames in os.walk(root_path):
         for fname in filenames:
-            if fname.lower().endswith('.mdx'):
-                mdx_files.append(os.path.join(dirpath, fname))
-    return mdx_files
+            if fname.lower().endswith(ALL_DOC_EXTENSIONS):
+                doc_files.append(os.path.join(dirpath, fname))
+    return doc_files
 
 def remove_paramfield_attrs(content):
     """移除 ParamField 组件的属性部分，保留换行结构
@@ -498,7 +505,7 @@ def check_mixed_language(link, language):
     return False
 
 def check_local_link(link, base_file_path):
-    # 只检查以./或../开头，且以.mdx结尾的链接
+    # 只检查以./或../开头，且以文档扩展名结尾的链接
     if not (link.startswith('./') or link.startswith('../')):
         return None
 
@@ -508,7 +515,7 @@ def check_local_link(link, base_file_path):
     else:
         link_path, anchor = link, None
 
-    if not link_path.lower().endswith('.mdx'):
+    if not link_path.lower().endswith(ALL_DOC_EXTENSIONS):
         return None
 
     # URL解码
@@ -942,16 +949,16 @@ def check_root_link(link, config, instance, repo_root):
         abs_path_dir = os.path.join(repo_root, path_dir) if not os.path.isabs(path_dir) else path_dir
         abs_path_dir = os.path.normpath(abs_path_dir)
 
-        # 遍历该目录下所有mdx文件，找file_id是否能对上
+        # 遍历该目录下所有文档文件，找file_id是否能对上
         for dirpath, _, filenames in os.walk(abs_path_dir):
             for fname in filenames:
-                if fname.lower().endswith('.mdx'):
+                if fname.lower().endswith(ALL_DOC_EXTENSIONS):
                     # 获取文件的完整相对路径
                     full_path = os.path.join(dirpath, fname)
                     rel = os.path.relpath(full_path, abs_path_dir)
                     rel = rel.replace('\\', '/')
 
-                    # 去掉.mdx后缀
+                    # 去掉扩展名后缀
                     rel_without_ext = os.path.splitext(rel)[0]
 
                     # 将路径转换为文件ID格式：小写+连接线

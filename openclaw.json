@@ -132,6 +132,8 @@
       "defaultAccount": "main",
       "mediaMaxMb": 100,
       "streaming": false,
+      "groupPolicy": "open",
+      "dmPolicy": "open",
       "requireMention": true,
       "accounts": {
         "main": {

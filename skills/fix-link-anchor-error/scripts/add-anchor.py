@@ -23,9 +23,9 @@ import sys
 import re
 import argparse
 
-_SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.normpath(os.path.join(_SKILL_DIR, '..', '..', '..', '..'))
-sys.path.insert(0, os.path.join(REPO_ROOT, '.scripts', 'check'))
+# 将 check-links-in-mdx 的 scripts 目录加入 path
+CHECK_LINKS_ROOT = '/home/doc/.openclaw/skills/check-links-in-mdx/scripts'
+sys.path.insert(0, CHECK_LINKS_ROOT)
 from check_links import heading_to_anchor
 _VALID_ID_RE = re.compile(r'^[a-z0-9][a-z0-9-]*$')
 

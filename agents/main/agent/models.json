@@ -104,7 +104,7 @@
       "apiKey": "ollama-local"
     },
     "zai": {
-      "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4/v1",
       "api": "openai-completions",
       "models": [
         {
@@ -121,7 +121,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 202800,
-          "maxTokens": 131100
+          "maxTokens": 131100,
+          "api": "openai-completions"
         },
         {
           "id": "glm-5",
@@ -137,7 +138,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 202800,
-          "maxTokens": 131100
+          "maxTokens": 131100,
+          "api": "openai-completions"
         },
         {
           "id": "glm-5-turbo",
@@ -153,7 +155,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 202800,
-          "maxTokens": 131100
+          "maxTokens": 131100,
+          "api": "openai-completions"
         },
         {
           "id": "glm-5v-turbo",
@@ -170,7 +173,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 202800,
-          "maxTokens": 131100
+          "maxTokens": 131100,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.7",
@@ -186,7 +190,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 204800,
-          "maxTokens": 131072
+          "maxTokens": 131072,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.7-flash",
@@ -202,7 +207,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 200000,
-          "maxTokens": 131072
+          "maxTokens": 131072,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.7-flashx",
@@ -218,7 +224,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 200000,
-          "maxTokens": 128000
+          "maxTokens": 128000,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.6",
@@ -234,7 +241,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 204800,
-          "maxTokens": 131072
+          "maxTokens": 131072,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.6v",
@@ -251,7 +259,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 128000,
-          "maxTokens": 32768
+          "maxTokens": 32768,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.5",
@@ -267,7 +276,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 131072,
-          "maxTokens": 98304
+          "maxTokens": 98304,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.5-air",
@@ -283,7 +293,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 131072,
-          "maxTokens": 98304
+          "maxTokens": 98304,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.5-flash",
@@ -299,7 +310,8 @@
             "cacheWrite": 0
           },
           "contextWindow": 131072,
-          "maxTokens": 98304
+          "maxTokens": 98304,
+          "api": "openai-completions"
         },
         {
           "id": "glm-4.5v",
@@ -316,10 +328,84 @@
             "cacheWrite": 0
           },
           "contextWindow": 64000,
-          "maxTokens": 16384
+          "maxTokens": 16384,
+          "api": "openai-completions"
         }
       ],
       "apiKey": "0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
+    },
+    "codex": {
+      "baseUrl": "https://chatgpt.com/backend-api/v1",
+      "auth": "token",
+      "api": "openai-codex-responses",
+      "models": [
+        {
+          "id": "gpt-5.4",
+          "name": "gpt-5.4",
+          "api": "openai-codex-responses",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "compat": {
+            "supportsReasoningEffort": true,
+            "supportsUsageInStreaming": true
+          }
+        },
+        {
+          "id": "gpt-5.4-mini",
+          "name": "GPT-5.4-Mini",
+          "api": "openai-codex-responses",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "compat": {
+            "supportsReasoningEffort": true,
+            "supportsUsageInStreaming": true
+          }
+        },
+        {
+          "id": "gpt-5.2",
+          "name": "gpt-5.2",
+          "api": "openai-codex-responses",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "compat": {
+            "supportsReasoningEffort": true,
+            "supportsUsageInStreaming": true
+          }
+        }
+      ]
     }
   }
 }

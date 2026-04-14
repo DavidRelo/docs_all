@@ -8,7 +8,7 @@
       "name": "清理已合并翻译工作区",
       "enabled": true,
       "createdAtMs": 1773973245354,
-      "updatedAtMs": 1775998859413,
+      "updatedAtMs": 1776151934358,
       "schedule": {
         "kind": "cron",
         "expr": "0 21 * * *",
@@ -27,14 +27,14 @@
         "channel": "feishu"
       },
       "state": {
-        "nextRunAtMs": 1776085200000,
-        "lastRunAtMs": 1775998800004,
+        "nextRunAtMs": 1776171600000,
+        "lastRunAtMs": 1776151911972,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 59409,
-        "lastDeliveryStatus": "delivered",
+        "lastDurationMs": 22386,
+        "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": true
+        "lastDelivered": false
       }
     },
     {
@@ -44,7 +44,7 @@
       "name": "磁盘使用率检查",
       "enabled": true,
       "createdAtMs": 1774328384024,
-      "updatedAtMs": 1776074567242,
+      "updatedAtMs": 1776151946740,
       "schedule": {
         "kind": "cron",
         "expr": "0 */6 * * *",
@@ -62,11 +62,11 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1776096149193,
-        "lastRunAtMs": 1776074549197,
+        "nextRunAtMs": 1776160949193,
+        "lastRunAtMs": 1776151934358,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18045,
+        "lastDurationMs": 12382,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -79,7 +79,7 @@
       "name": "docuo缓存清理",
       "enabled": true,
       "createdAtMs": 1774328505188,
-      "updatedAtMs": 1776072772421,
+      "updatedAtMs": 1776151960924,
       "schedule": {
         "kind": "cron",
         "expr": "0 3 * * *",
@@ -99,11 +99,11 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1776106800000,
-        "lastRunAtMs": 1776020400005,
+        "nextRunAtMs": 1776193200000,
+        "lastRunAtMs": 1776151946740,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 43650,
+        "lastDurationMs": 14184,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
         "lastDelivered": false
@@ -115,7 +115,7 @@
       "name": "nightly-link-check",
       "enabled": true,
       "createdAtMs": 1775803914565,
-      "updatedAtMs": 1776072913424,
+      "updatedAtMs": 1776078770163,
       "schedule": {
         "kind": "cron",
         "expr": "0 2 * * *",
@@ -125,7 +125,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "请挑选5个未进行链接检查的实例进行检查和修复",
+        "message": "1. 使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：\n- task_name总以check_link_{date_time}为名\n```bash\npython3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent writer --job <task_name>\n```\n- 脚本会返回 `worktree_dir`（工作区路径）和 `branch`（分支名）\n- 创建后 `cd` 到返回的 `worktree_dir` 开始工作\n\n2. 挑选10个实例进行断链检查修复\n- 加载 `check-links-in-mdx` skill 并按“Batch Processing Workflow”章节主动挑选10个实例开始检查和修复\n\n3. 扫描错误链接\n根据 `check-links-in-mdx`  skill 的指引检查 instanceid 有哪些链接错误。链接错误问题会被记录到 `/tmp/check_link_result.json`。\n\n4. 修复错误链接\n\n- 加载 check_link_result.json 内容。根据 `instances` 节点记录处理\n- 加载 `fix-chinese-english-links-mixed` skill 处理中英混用链接。\n- 加载 `fix-internal-link-error` skill 处理内部链(URL path)接错误问题。注意要把错误链接进行文档仓库全局替换。\n- 加载 `fix-link-anchor-error` skill 处理锚点链接错误问题。注意要把错误链接进行文档仓库全局替换。\n\n5. 再次扫描错误链接\n- 每个实例在修复链接错误后重新加载 `check-links-in-mdx` skill 并根据 skill 的指引检查 instanceid 、目录或者文件有哪些链接错误。如果还有错误链接问题则证明本次修改还未完成，继续修复错误链接。\n\n6. 在修复工作完成后，commit并提交PR\n- Commit changes in workspace: follow `zego-docs-commit` skill\n- Push to fork: `git push origin <branch>`\n- Create PR to upstream: follow `manage-pr` skill",
         "timeoutSeconds": 300
       },
       "delivery": {
@@ -143,7 +143,8 @@
         "lastDurationMs": 124384,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": true
+        "lastDelivered": true,
+        "runningAtMs": 1776152084623
       },
       "deleteAfterRun": false,
       "agentId": "writer"
@@ -153,7 +154,7 @@
       "name": "workspace-cleanup",
       "enabled": true,
       "createdAtMs": 1776072240251,
-      "updatedAtMs": 1776072501905,
+      "updatedAtMs": 1776152004667,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *",
@@ -173,17 +174,55 @@
         "bestEffort": false
       },
       "state": {
-        "nextRunAtMs": 1776128400000,
-        "lastRunAtMs": 1776072476616,
+        "nextRunAtMs": 1776214800000,
+        "lastRunAtMs": 1776151960924,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 25289,
-        "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
+        "lastDurationMs": 43743,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
       },
       "deleteAfterRun": false,
       "agentId": "main"
+    },
+    {
+      "id": "7ff2a219-bcf7-46f9-809f-3392f362e395",
+      "agentId": "writer",
+      "name": "nightly-link-check",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1776138101129,
+      "updatedAtMs": 1776151376262,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "1. 使用 `manage-docs-workspace` skill 的脚本创建 git worktree 工作区：\n- task_name总以check_link_{%Y%m%d_%H%M%S}为名\n```bash\npython3 ~/.openclaw/skills/manage-docs-workspace/scripts/workspace-manager.py create --agent writer --job <task_name>\n```\n- 脚本会返回 `worktree_dir`（工作区路径）和 `branch`（分支名）\n- 创建后 `cd` 到返回的 `worktree_dir` 开始工作\n\n2. 挑选5个实例进行断链检查修复\n- 加载 `check-links-in-mdx` skill 并按“Batch Processing Workflow”章节主动挑选5个实例开始检查和修复\n- 必须使用脚本`python3 ~/.openclaw/skills/check-links-in-mdx/scripts/link_check_manager.py --worktree-dir <WORKTREE_DIR> --zh --get 5`获取待处理实例id列表\n- 优先修复中文，待中文都没问题后再继续安排英文\n\n3. 扫描错误链接\n根据 `check-links-in-mdx`  skill 的指引检查 instanceid 有哪些链接错误。链接错误问题会被记录到 `/tmp/check_link_result.json`。\n\n4. 修复错误链接\n\n- 加载 check_link_result.json 内容。根据 `instances` 节点记录处理\n- 加载 `fix-chinese-english-links-mixed` skill 处理中英混用链接。\n- 加载 `fix-internal-link-error` skill 处理内部链(URL path)接错误问题。注意要把错误链接进行文档仓库全局替换。\n- 加载 `fix-link-anchor-error` skill 处理锚点链接错误问题。注意要把错误链接进行文档仓库全局替换。\n\n5. 再次扫描错误链接\n- 每个实例在修复链接错误后重新加载 `check-links-in-mdx` skill 并根据 skill 的指引检查 instanceid 、目录或者文件有哪些链接错误。如果还有错误链接问题则证明本次修改还未完成，继续修复错误链接。\n\n6. 在修复工作完成后，commit并提交PR（如果commit失败报错则不提PR）\n- Commit changes in workspace: follow `zego-docs-commit` skill\n- Push to fork: `git push origin <branch>`\n- Create PR to upstream: follow `manage-pr` skill\n\n**注意事项**\n- 仅能依据 /tmp/check_link_result.json 结果修改链接而不要随意做其他改动\n- 严禁直接读取docuo.config.*.json文件，会导致模型上下文溢出\n- 绝对禁止直接读取~/code/docs_all目录任何内容\n- 严禁在 ~/.openclaw目录或子目录下执行任何git操作\n- 步骤分析说明、总结皆用中文\n- 仅能修改文件中的链接内容，绝不允许顺手修复/优化标点符号、内容表达相关内容。",
+        "timeoutSeconds": 3600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "oc_87ab7f7908a8eb98eb6f8625f4e6fa9b",
+        "accountId": "writer",
+        "bestEffort": false
+      },
+      "state": {
+        "nextRunAtMs": 1776189600000,
+        "lastRunAtMs": 1776150691063,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 685199,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
     }
   ]
 }

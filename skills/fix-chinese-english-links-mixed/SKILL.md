@@ -11,7 +11,7 @@ Fix Chinese-English domain mixing errors.
 
 | Document Language | Wrong Domain | Correct Domain |
 |-------------------|--------------|----------------|
-| Chinese (zh) | `zegocloud.com` / `www.zegocloud.com` | `zego.im` / `doc-zh.zego.im` |
+| Chinese (zh) | `zegocloud.com` / `www.zegocloud.com` | `doc-zh.zego.im` |
 | English (en) | `zego.im` / `doc-zh.zego.im` | `zegocloud.com` / `www.zegocloud.com` |
 
 **Note**: `doc-zh.zego.im` is the Chinese docs subdomain; `www.zegocloud.com/docs` is the English docs path.
@@ -51,3 +51,7 @@ Do NOT modify links containing these domains:
 # After
 [Link](https://www.zegocloud.com/docs/aiagent-android/quick-start)
 ```
+
+## 特例
+
+`https://doc-zh.zego.im/article/api?doc=xxx` 这种形式的链接，在英文应该对应的是`https://www.zegocloud.com/article/api?doc=`,不必加/docs，因为这种形式的API都在老系统。

@@ -6,14 +6,5 @@
       "provider": "zai",
       "key": "0eb5aa4b011c4ca081afa6124c2dce1d.Q7DbKVbpKc8oZj3I"
     }
-  },
-  "lastGood": {
-    "zai": "zai:default"
-  },
-  "usageStats": {
-    "zai:default": {
-      "errorCount": 0,
-      "lastUsed": 1776078824431
-    }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "lastGood": {
+    "zai": "zai:default"
+  },
+  "usageStats": {
+    "zai:default": {
+      "errorCount": 0,
+      "lastUsed": 1776152004593
+    }
+  }
+}

@@ -113,11 +113,11 @@ def update_status(records, language, instance_id, status):
     return None
 
 
-def initialize_records(record_file):
+def initialize_records(record_file, worktree_dir):
     """Generate initial records from both config files."""
     records = {"zh": [], "en": []}
     for lang in ['zh', 'en']:
-        instance_ids = load_config_instances(lang, args.worktree_dir)
+        instance_ids = load_config_instances(lang, worktree_dir)
         for inst_id in instance_ids:
             records[lang].append({
                 "instance_id": inst_id,
@@ -128,7 +128,7 @@ def initialize_records(record_file):
     return records
 
 
-def ensure_records(record_file):
+def ensure_records(record_file, worktree_dir):
     """Load records, auto-initialize if file missing or all instances are done."""
     records = load_records(record_file)
     path = get_record_file_path(record_file)
@@ -150,13 +150,13 @@ def ensure_records(record_file):
             needs_init = True
 
     if needs_init:
-        records = initialize_records(record_file)
+        records = initialize_records(record_file, worktree_dir)
     return records
 
 
 def handle_count(args):
     """Handle --count command."""
-    records = ensure_records(args.record_file)
+    records = ensure_records(args.record_file, args.worktree_dir)
     result = {"zh": 0, "en": 0}
     for lang in ['zh', 'en']:
         config_ids = load_config_instances(lang, args.worktree_dir)
@@ -174,7 +174,7 @@ def handle_get(args):
         print(json.dumps({"error": "Count must be a positive integer"}), file=sys.stderr)
         sys.exit(1)
 
-    records = ensure_records(args.record_file)
+    records = ensure_records(args.record_file, args.worktree_dir)
     config_ids = load_config_instances(language, args.worktree_dir)
     unchecked = get_unchecked_ids(records, language, config_ids)
 
