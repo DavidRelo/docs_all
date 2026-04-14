@@ -22,8 +22,8 @@
     "lastRunMode": "local"
   },
   "meta": {
-    "lastTouchedVersion": "2026.4.1",
-    "lastTouchedAt": "2026-04-10T03:17:42.282Z"
+    "lastTouchedVersion": "2026.4.12",
+    "lastTouchedAt": "2026-04-14T02:18:07.605Z"
   },
   "agents": {
     "defaults": {
@@ -50,7 +50,9 @@
         "tools": {
           "profile": "full"
         },
-        "sandbox": { "mode": "off" }
+        "sandbox": {
+          "mode": "off"
+        }
       },
       {
         "id": "translator",
@@ -60,7 +62,9 @@
         "tools": {
           "profile": "full"
         },
-        "sandbox": { "mode": "off" }
+        "sandbox": {
+          "mode": "off"
+        }
       },
       {
         "id": "writer",
@@ -70,7 +74,9 @@
         "tools": {
           "profile": "full"
         },
-        "sandbox": { "mode": "off" }
+        "sandbox": {
+          "mode": "off"
+        }
       }
     ]
   },
@@ -123,39 +129,35 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "connectionMode": "websocket",
-      "domain": "feishu",
+      "defaultAccount": "main",
       "mediaMaxMb": 100,
-      "streaming": true,
-      "blockStreaming": true,
+      "streaming": false,
+      "requireMention": true,
       "accounts": {
         "main": {
           "appId": "cli_a794f990186a500b",
           "appSecret": "GN0YXZ9G8VX9xLHDMs15Og1uWSF6gA4P",
-          "botName": "大总管",
+          "name": "DocMaster",
           "requireMention": true
         },
         "translator": {
           "appId": "cli_a930e5de0eb85cc7",
           "appSecret": "HRJchKeIC7EXGhNpKloKAfKP4PtELULf",
-          "botName": "翻译助手",
+          "name": "Translator",
           "requireMention": true
         },
         "writer": {
           "appId": "cli_a94e0c1c7b785cd2",
           "appSecret": "CInEbQLTIerUBbXr7YCowhDacS2X1vkU",
-          "botName": "写作助手",
+          "name": "Writer",
           "requireMention": true
         },
         "default": {
           "groupPolicy": "open",
-          "dmPolicy": "open",
-          "allowFrom": [
-            "*"
-          ]
+          "dmPolicy": "open"
         }
-      }
+      },
+      "enabled": true
     }
   },
   "models": {
@@ -397,6 +399,9 @@
         "enabled": true
       },
       "duckduckgo": {
+        "enabled": true
+      },
+      "zai": {
         "enabled": true
       }
     }
