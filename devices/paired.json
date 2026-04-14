@@ -191,7 +191,7 @@
           "operator.write"
         ],
         "createdAtMs": 1775728636938,
-        "lastUsedAtMs": 1776152279448
+        "lastUsedAtMs": 1776159919342
       }
     },
     "createdAtMs": 1775728636938,
@@ -201,8 +201,8 @@
     "deviceId": "082ea8a872c82aa16ddcdee261037522de1c44beb910e726f387c8d2d09a1fa7",
     "publicKey": "8p-d-XrfLFqTNcIW31vjM1-cVcHc_83w-CkH2l2ctJk",
     "platform": "linux",
-    "clientId": "gateway-client",
-    "clientMode": "backend",
+    "clientId": "cli",
+    "clientMode": "cli",
     "role": "operator",
     "roles": [
       "operator"
@@ -237,7 +237,6 @@
       }
     },
     "createdAtMs": 1775790316448,
-    "approvedAtMs": 1775802896797,
-    "displayName": "agent"
+    "approvedAtMs": 1775802896797
   }
 }

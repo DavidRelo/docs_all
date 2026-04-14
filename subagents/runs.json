@@ -1,4 +1,38 @@
 {
   "version": 2,
-  "runs": {}
+  "runs": {
+    "ce9a913e-1a5a-4aae-bdb8-64f13f3f803f": {
+      "runId": "ce9a913e-1a5a-4aae-bdb8-64f13f3f803f",
+      "childSessionKey": "agent:writer:subagent:9dc48368-9e7f-4872-91c3-f5cb83277761",
+      "controllerSessionKey": "agent:writer:cron:7ff2a219-bcf7-46f9-809f-3392f362e395",
+      "requesterSessionKey": "agent:writer:cron:7ff2a219-bcf7-46f9-809f-3392f362e395",
+      "requesterOrigin": {
+        "channel": "feishu",
+        "accountId": "writer"
+      },
+      "requesterDisplayKey": "agent:writer:cron:7ff2a219-bcf7-46f9-809f-3392f362e395",
+      "task": "修复锚点链接错误：检查 u3d-cs 实例中的锚点链接问题。文件：/home/doc/code/docs_all_writer_check_link_20250414_1539/core_products/real-time-voice-video/zh/u3d-cs/client-sdk/api-reference/class.mdx。错误是 #onrealtimesequentialdatasent 锚点链接无效，需要在第10874行修复这个锚点链接。",
+      "cleanup": "keep",
+      "expectsCompletionMessage": true,
+      "spawnMode": "run",
+      "label": "fix-anchor-link-error",
+      "model": "zai/glm-5-turbo",
+      "workspaceDir": "/home/doc/.openclaw/workspace-writer",
+      "runTimeoutSeconds": 0,
+      "createdAt": 1776152471022,
+      "startedAt": 1776152477185,
+      "sessionStartedAt": 1776152471022,
+      "accumulatedRuntimeMs": 0,
+      "cleanupHandled": false,
+      "completionAnnouncedAt": 1776152543820,
+      "retainAttachmentsOnKeep": false,
+      "endedAt": 1776152532436,
+      "outcome": {
+        "status": "ok"
+      },
+      "endedReason": "subagent-complete",
+      "frozenResultText": "修复完成。将 `class.mdx` 中 2 处 `[OnRealTimeSequentialDataSent](#onrealtimesequentialdatasent)` 改为 `[OnRealTimeSequentialDataSent](./interface#onrealtimesequentialdatasent)`，因为该锚点定义在 `interface.mdx` 中，需要跨文件引用。",
+      "frozenResultCapturedAt": 1776152532717
+    }
+  }
 }

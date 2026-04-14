@@ -339,7 +339,10 @@ def find_mdx_files(root_path):
     for dirpath, _, filenames in os.walk(root_path):
         for fname in filenames:
             if fname.lower().endswith(ALL_DOC_EXTENSIONS):
-                doc_files.append(os.path.join(dirpath, fname))
+                full = os.path.join(dirpath, fname)
+                if '/client-sdk/api-reference/' in full:
+                    continue
+                doc_files.append(full)
     return doc_files
 
 def remove_paramfield_attrs(content):
@@ -1425,6 +1428,10 @@ def run_non_interactive(args):
         if not os.path.isfile(file_path):
             print(f'{Fore.RED}文件不存在: {file_path}{Style.RESET_ALL}')
             sys.exit(1)
+
+        if '/client-sdk/api-reference/' in file_path:
+            print(f'{Fore.YELLOW}跳过 client-sdk/api-reference 路径: {file_path}{Style.RESET_ALL}')
+            sys.exit(0)
 
         # 尝试找到对应实例（用于 locale 等上下文）
         rel_path = os.path.relpath(file_path, repo_root)
