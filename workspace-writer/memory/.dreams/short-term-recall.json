@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-14T18:03:00.545Z",
+  "entries": {
+    "memory:memory/2026-04-08.md:1:10": {
+      "key": "memory:memory/2026-04-08.md:1:10",
+      "path": "memory/2026-04-08.md",
+      "startLine": 1,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "# 2026-04-08 ## 断链检查修复任务 - real_time_video_ios_oc_zh - **实例**: real_time_video_ios_oc_zh（实时音视频 iOS Objective-C 中文） - **工作区**: ~/code/writer/docs_all_fix_links - **分支**: fix-links-real_time_video_ios_oc_zh (基于 upstream/main) - **检查结果**: 仅锚点链接无效，37个问题涉及7个文件 - **状态**: 修复中",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-14T14:02:00.907Z",
+      "lastRecalledAt": "2026-04-14T18:03:00.545Z",
+      "queryHashes": [
+        "2e4014d11e2b",
+        "d2743d8960a6"
+      ],
+      "recallDays": [
+        "2026-04-14",
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "real-time-video-ios-oc-zh",
+        "objective-c",
+        "code/writer/docs-all-fix-links",
+        "upstream/main",
+        "检查",
+        "修复",
+        "任务",
+        "实例"
+      ]
+    },
+    "memory:memory/2026-04-09.md:22:43": {
+      "key": "memory:memory/2026-04-09.md:22:43",
+      "path": "memory/2026-04-09.md",
+      "startLine": 22,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "- 使用流程和代码：zego-express-audio-plugin 插件模板 - **工作区**：~/code/writer/docs_all_custom_video - **分支**：custom-video (基于 upstream/custom-video) - **时间**：2026-04-09 15:39 - **状态**：初稿完成，待审核 ## 断链检查修复 - real_time_video_ios_oc_zh - **来源群**: 飞书 DM (杨万青) - **工作区**: ~/code/writer/docs_all_fix_links - **分支**: fix-links-real_time_video_ios_oc_zh (from upstream/main) - **PR**: https://github.com/ZEGOCLOUD/docs_all/pull/1227 修复5类锚点问题，102文件404处替换： 1. online-ktv 数字锚点 → 语义英文锚点 (36+文件全局替换) 2. function-list.mdx 12个client API锚点修正 3. range-audio.mdx 同文件中文锚点加英文ID 4. glossary #rtc-推流 → #rtc-publishing-stream, #拉流 → #playing-stream 5. monitor-stream-quality #4_4 → #mos-audio-quality-score 二次扫描零错误确认。",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-14T18:03:00.545Z",
+      "lastRecalledAt": "2026-04-14T18:03:00.545Z",
+      "queryHashes": [
+        "d2743d8960a6"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "zego-express-audio-plugin",
+        "custom-video",
+        "upstream/custom-video",
+        "real-time-video-ios-oc-zh",
+        "code/writer/docs-all-fix-links",
+        "upstream/main",
+        "online-ktv",
+        "function-list.mdx"
+      ]
+    }
+  }
+}
