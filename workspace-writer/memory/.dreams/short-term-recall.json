@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T18:03:00.545Z",
+  "updatedAt": "2026-04-15T22:00:58.841Z",
   "entries": {
     "memory:memory/2026-04-08.md:1:10": {
       "key": "memory:memory/2026-04-08.md:1:10",
@@ -9,20 +9,22 @@
       "endLine": 10,
       "source": "memory",
       "snippet": "# 2026-04-08 ## 断链检查修复任务 - real_time_video_ios_oc_zh - **实例**: real_time_video_ios_oc_zh（实时音视频 iOS Objective-C 中文） - **工作区**: ~/code/writer/docs_all_fix_links - **分支**: fix-links-real_time_video_ios_oc_zh (基于 upstream/main) - **检查结果**: 仅锚点链接无效，37个问题涉及7个文件 - **状态**: 修复中",
-      "recallCount": 2,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2,
+      "totalScore": 4,
       "maxScore": 1,
       "firstRecalledAt": "2026-04-14T14:02:00.907Z",
-      "lastRecalledAt": "2026-04-14T18:03:00.545Z",
+      "lastRecalledAt": "2026-04-15T21:02:06.355Z",
       "queryHashes": [
         "2e4014d11e2b",
-        "d2743d8960a6"
+        "d2743d8960a6",
+        "0e21af878c53"
       ],
       "recallDays": [
         "2026-04-14",
-        "2026-04-15"
+        "2026-04-15",
+        "2026-04-16"
       ],
       "conceptTags": [
         "real-time-video-ios-oc-zh",
@@ -42,18 +44,22 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "- 使用流程和代码：zego-express-audio-plugin 插件模板 - **工作区**：~/code/writer/docs_all_custom_video - **分支**：custom-video (基于 upstream/custom-video) - **时间**：2026-04-09 15:39 - **状态**：初稿完成，待审核 ## 断链检查修复 - real_time_video_ios_oc_zh - **来源群**: 飞书 DM (杨万青) - **工作区**: ~/code/writer/docs_all_fix_links - **分支**: fix-links-real_time_video_ios_oc_zh (from upstream/main) - **PR**: https://github.com/ZEGOCLOUD/docs_all/pull/1227 修复5类锚点问题，102文件404处替换： 1. online-ktv 数字锚点 → 语义英文锚点 (36+文件全局替换) 2. function-list.mdx 12个client API锚点修正 3. range-audio.mdx 同文件中文锚点加英文ID 4. glossary #rtc-推流 → #rtc-publishing-stream, #拉流 → #playing-stream 5. monitor-stream-quality #4_4 → #mos-audio-quality-score 二次扫描零错误确认。",
-      "recallCount": 1,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 5,
       "maxScore": 1,
       "firstRecalledAt": "2026-04-14T18:03:00.545Z",
-      "lastRecalledAt": "2026-04-14T18:03:00.545Z",
+      "lastRecalledAt": "2026-04-15T22:00:58.841Z",
       "queryHashes": [
-        "d2743d8960a6"
+        "d2743d8960a6",
+        "0e21af878c53",
+        "2d3334f57600",
+        "123257c4dab1"
       ],
       "recallDays": [
-        "2026-04-15"
+        "2026-04-15",
+        "2026-04-16"
       ],
       "conceptTags": [
         "zego-express-audio-plugin",
@@ -64,6 +70,38 @@
         "upstream/main",
         "online-ktv",
         "function-list.mdx"
+      ]
+    },
+    "memory:memory/2026-04-16.md:1:30": {
+      "key": "memory:memory/2026-04-16.md:1:30",
+      "path": "memory/2026-04-16.md",
+      "startLine": 1,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "# 2026-04-16 ## 断链检查修复任务 - cron任务 - **时间**: 2026-04-16 04:00:00 (Asia/Shanghai) - **任务类型**: cron定时断链检查 - **工作区**: /home/doc/code/docs_all_writer_check_link_20260416_0400 - **分支**: check_link_20260416_0400 (基于 upstream/main) ### 检查过程 1. **创建工作区**: 使用workspace-manager.py成功创建git worktree工作区 2. **实例检查**: - 检查中文实例: real_time_voice_rn_zh (实时语音 React Native JS) - 检查英文实例: real_time_video_android_kotlin (Video Call Android Kotlin) 3. **检查结果**: - 中文实例real_time_voice_rn_zh: 无链接错误 - 英文实例real_time_video_android_kotlin: 报告3个内部链接错误，但经验证所有链接都有效 ### 错误链接验证 报告的\"错误\"链接： 1. `/policies-and-agreements/zego-security-and-compliance-white-paper` → 指向`general/zh/docs_policies_and_agreements_zh/ZEGO",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-15T21:03:01.909Z",
+      "lastRecalledAt": "2026-04-15T22:00:58.841Z",
+      "queryHashes": [
+        "2d3334f57600",
+        "123257c4dab1"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "asia/shanghai",
+        "check-link-20260416-0400",
+        "upstream/main",
+        "使用workspace-manager.py成功创建git",
+        "real-time-voice-rn-zh",
+        "real-time-video-android-kotlin",
+        "中文实例real-time-voice-rn-zh",
+        "检查"
       ]
     }
   }
