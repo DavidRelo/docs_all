@@ -65,8 +65,8 @@ The overall architecture of the in-Room business of this best practice is shown 
 - You have created a project in the [ZEGOCLOUD Console](https://console.zegocloud.com) and applied for a valid AppID and AppSign. For details, please refer to [Console - Project Management - Project Information](/console/project-info).
 - You have contacted ZEGO business personnel to open the object segmentation permission.
 - You have contacted ZEGOCLOUD Technical Support to obtain the Video Call SDK containing the object segmentation feature, and integrated the SDK by referring to the Video Call's [Quick Start - Integration](/real-time-video-android-java/quick-start/integrating-sdk). **If your project has integrated the official website version of the Video Call SDK, you need to replace it.**
-- You have opened the ZIM service by yourself in the [ZEGOCLOUD Console](https://console.zegocloud.com) (for details, please refer to the Console's [Service Configuration - Instant Messaging - Open Service](/console/service-configuration/im/activate-service)). If you cannot open the ZIM service, please contact ZEGOCLOUD Technical Support to open it.
-- You have integrated the ZIM SDK. For details, please refer to "Integrate SDK" in [Quick Start - Implement Basic Send and Receive Messages](/zim-android/send-and-receive-messages#3-implement-basic-send-and-receive-messages).
+- You have opened the ZIM service by yourself in the [ZEGOCLOUD Console](https://console.zegocloud.com) (for details, please refer to the Console's [Service Configuration - Instant Messaging - Open Service](/console/service-configuration/im)). If you cannot open the ZIM service, please contact ZEGOCLOUD Technical Support to open it.
+- You have integrated the ZIM SDK. For details, please refer to "Integrate SDK" in [Quick Start - Implement Basic Send and Receive Messages](/zim-android/send-and-receive-messages#send-receive-messages).
 
 ## Implementation Process
 
@@ -74,8 +74,8 @@ The implementation process mainly includes 6 steps, namely initializing SDK, joi
 
 ### Initialize SDK
 
-- Before managing mic positions in the Room, you need to initialize the ZIM SDK first and set the notification callback to listen for ZIM events. For interface call details, please refer to "2. Create ZIM Instance" and "3. Use EventHandler Protocol" in [Instant Messaging - Implement Basic Message Send and Receive](/zim-android/send-and-receive-messages#3-implement-basic-send-and-receive-messages).
-- Before implementing object segmentation, you need to initialize the ZEGO Express SDK first and set the notification callback at the same time to listen for Express events. For interface call details, please refer to "Initialization" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#initialization).
+- Before managing mic positions in the Room, you need to initialize the ZIM SDK first and set the notification callback to listen for ZIM events. For interface call details, please refer to "2. Create ZIM Instance" and "3. Use EventHandler Protocol" in [Instant Messaging - Implement Basic Message Send and Receive](/zim-android/send-and-receive-messages#send-receive-messages).
+- Before implementing object segmentation, you need to initialize the ZEGO Express SDK first and set the notification callback at the same time to listen for Express events. For interface call details, please refer to "Initialization" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#init).
 
 ```mermaid
 sequenceDiagram
@@ -93,7 +93,7 @@ sequenceDiagram
 
 ### Join Room
 
-- To implement publishing stream, users need to login to the RTC Room first. For interface calls, please refer to "Login Room" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#login-room).
+- To implement publishing stream, users need to login to the RTC Room first. For interface calls, please refer to "Login Room" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#join-room).
 - This best practice implements the business logic of users getting on and off the mic by modifying ZIM Room attributes. Therefore, users need to:
     1. Login to the ZIM service. For interface calls, please refer to "Login ZIM" in [Instant Messaging - Implement Basic Message Send and Receive](/zim-android/send-and-receive-messages#4-login-zim).
     2. Users need to create or join a ZIM Room. For details, please refer to "Create Room, Join Room" in [Instant Messaging - Room Management](/zim-android/guides/room/manage-rooms#create-room-join-room).
@@ -114,8 +114,8 @@ sequenceDiagram
 
 ### Manage Mic Positions
 
-- After joining the ZIM Room, users can understand the mic position information in the Room by querying all Room attributes. For interface call details, please refer to "Get Room Attributes" in [Instant Messaging - Room Attribute Management](/zim-android/guides/room/room-properties#get-room-attributes).
-- If users need to get on the mic, they can modify the mic position information by modifying Room attributes. For interface call details, please refer to "Set Room Attributes" in [Instant Messaging - Room Attribute Management](/zim-android/guides/room/room-properties#get-room-attributes).
+- After joining the ZIM Room, users can understand the mic position information in the Room by querying all Room attributes. For interface call details, please refer to "Get Room Attributes" in [Instant Messaging - Room Attribute Management](/zim-android/guides/room/room-properties#get-attributes).
+- If users need to get on the mic, they can modify the mic position information by modifying Room attributes. For interface call details, please refer to "Set Room Attributes" in [Instant Messaging - Room Attribute Management](/zim-android/guides/room/room-properties#get-attributes).
 
 ```mermaid
 sequenceDiagram
@@ -136,7 +136,7 @@ sequenceDiagram
 
 ### Use Object Segmentation
 
-1. To transmit the image after object segmentation when publishing stream, you need to set the alpha channel. Please refer to "Use Alpha Channel to Transmit Segmented Main Body" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#7-optional-use-alpha-channel-to-transmit-segmented-main-body) to learn how to call [enableAlphaChannelVideoEncoder](@enableAlphaChannelVideoEncoder) to set the alpha channel.
+1. To transmit the image after object segmentation when publishing stream, you need to set the alpha channel. Please refer to "Use Alpha Channel to Transmit Segmented Main Body" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#alpha-channel) to learn how to call [enableAlphaChannelVideoEncoder](@enableAlphaChannelVideoEncoder) to set the alpha channel.
 
 2. Since the picture captured by the mobile phone's front camera is opposite to the actual left and right, you need to enable screen mirroring to obtain the correct direction picture when previewing or playing stream. For interface call details, please refer to "Set Mirror Mode" in [Video Call - Common Video Configuration](/real-time-video-android-java/video/common-video-configuration#3-set-mirror-mode).
 
@@ -146,7 +146,7 @@ sequenceDiagram
 
     Preview and publish local picture. For interface call details, please refer to "Start Preview and Publishing Stream" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#8-start-preview-and-publishing-stream).
 
-5. Enable object segmentation and receive segmentation results. For interface call details, please refer to "Listen to Object Segmentation Status Callback" and "Use Object Segmentation to Implement Multiple Business Functions" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#5-listen-to-object-segmentation-status-callback).
+5. Enable object segmentation and receive segmentation results. For interface call details, please refer to "Listen to Object Segmentation Status Callback" and "Use Object Segmentation to Implement Multiple Business Functions" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#segmentation-callback).
 
     <Note title="Notes">
     Since the RTC Room is only related to publishing stream, developers can also preview the effect of object segmentation outside the RTC Room.
@@ -179,8 +179,8 @@ After the user receives the ZIM event notification and learns that someone has g
     If the settings for TextureView have been implemented during preview, this step can be omitted.
     </Note>
 
-2. Play the video stream that has implemented object segmentation from the other party, thereby achieving the visual effect of two users having a face-to-face dialogue in "the same space". For interface call details, please refer to "Start Playing Stream" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#9-optional-set-alpha-channel-rendering-on-playing-stream-end-and-play-stream).
-3. If you need to stop playing stream, for interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-audio-and-video-call).
+2. Play the video stream that has implemented object segmentation from the other party, thereby achieving the visual effect of two users having a face-to-face dialogue in "the same space". For interface call details, please refer to "Start Playing Stream" in [Video Call - Object Segmentation](/real-time-video-android-java/video/object-segmentation#alpha-rendering).
+3. If you need to stop playing stream, for interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-call).
 
 ```mermaid
 sequenceDiagram
@@ -199,9 +199,9 @@ sequenceDiagram
 
 ### Leave Room
 
-1. Stop preview and publishing stream. For interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-audio-and-video-call).
-2. Leave the ZIM Room. For interface call details, please refer to "Leave Room" in [Instant Messaging - Room Management](/zim-android/guides/room/manage-rooms#leave-room).
-3. Leave the RTC Room. For interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-audio-and-video-call).
+1. Stop preview and publishing stream. For interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-call).
+2. Leave the ZIM Room. For interface call details, please refer to "Leave Room" in [Instant Messaging - Room Management](/zim-android/guides/room/manage-rooms#exit-room).
+3. Leave the RTC Room. For interface call details, please refer to "Stop Audio and Video Call" in [Video Call - Implementing Video Call](/real-time-video-android-java/quick-start/implementing-video-call#stop-call).
 
 
 ```mermaid
