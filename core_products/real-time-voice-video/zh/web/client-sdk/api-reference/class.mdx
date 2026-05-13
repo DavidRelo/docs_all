@@ -5944,7 +5944,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureCamera"
-  prototype="  startCaptureCamera(options?: [ZegoCaptureCamera](./interface#zegocapturecamera)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCamera(options?: [ZegoCaptureCamera](./interface#zegocapturecamera)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集摄像头视频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5972,7 +5972,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureCameraAndMicrophone"
-  prototype="  startCaptureCameraAndMicrophone(cameraOptions?: [ZegoCaptureCamera](./interface#zegocapturecamera), microphoneOptions?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCameraAndMicrophone(cameraOptions?: [ZegoCaptureCamera](./interface#zegocapturecamera), microphoneOptions?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集摄像头和麦克风音视频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6001,7 +6001,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureCustomAudio"
-  prototype="  startCaptureCustomAudio(options: [ZegoCustomAudio](./interface#zegocustomaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomAudio(options: [ZegoCustomAudio](./interface#zegocustomaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集第三方音频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6030,7 +6030,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureCustomVideo"
-  prototype="  startCaptureCustomVideo(options: [ZegoCustomVideo](./interface#zegocustomvideo)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomVideo(options: [ZegoCustomVideo](./interface#zegocustomvideo)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集第三方视频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6060,7 +6060,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureCustomVideoAndAudio"
-  prototype="  startCaptureCustomVideoAndAudio(videoOptions: [ZegoCustomVideo](./interface#zegocustomvideo), audioOptions: [ZegoCustomAudio](./interface#zegocustomaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomVideoAndAudio(videoOptions: [ZegoCustomVideo](./interface#zegocustomvideo), audioOptions: [ZegoCustomAudio](./interface#zegocustomaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集第三方音视频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6091,7 +6091,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureMicrophone"
-  prototype="  startCaptureMicrophone(options?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureMicrophone(options?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集麦克风音频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6119,7 +6119,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureScreen"
-  prototype="  startCaptureScreen(options?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureScreen(options?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集屏幕共享视频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -6147,7 +6147,7 @@ SDK 将根据需要创建媒体流播放最新正在采集的媒体流音频。
 </ParamField>
 <ParamField
   name="startCaptureScreenWithAudio"
-  prototype="  startCaptureScreenWithAudio(screenVideoOptions?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo), screenAudioOptions?: [ZegoCaptureScreenAudio](./interface#zegocapturescreenaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureScreenWithAudio(screenVideoOptions?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo), screenAudioOptions?: [ZegoCaptureScreenAudio](./interface#zegocapturescreenaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="开始采集屏幕共享视频和共享音频流。"
   parent_name="ZegoLocalStream"
   parent_type="class">

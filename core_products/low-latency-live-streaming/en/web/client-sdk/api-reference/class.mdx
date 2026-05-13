@@ -5731,7 +5731,7 @@ When video browser restrictions prevent playback, you can call this interface in
 </ParamField>
 <ParamField
   name="startCaptureCamera"
-  prototype="  startCaptureCamera(options?: [ZegoCaptureCamera](./interface#zegocapturecamera)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCamera(options?: [ZegoCaptureCamera](./interface#zegocapturecamera)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing camera video stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5760,7 +5760,7 @@ Start capturing the camera stream, and the video being pushed will not be update
 </ParamField>
 <ParamField
   name="startCaptureCameraAndMicrophone"
-  prototype="  startCaptureCameraAndMicrophone(cameraOptions?: [ZegoCaptureCamera](./interface#zegocapturecamera), microphoneOptions?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCameraAndMicrophone(cameraOptions?: [ZegoCaptureCamera](./interface#zegocapturecamera), microphoneOptions?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing camera  and microphone stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5790,7 +5790,7 @@ Start capturing the camera and microphone stream, and the video or audio being p
 </ParamField>
 <ParamField
   name="startCaptureCustomAudio"
-  prototype="  startCaptureCustomAudio(options: [ZegoCustomAudio](./interface#zegocustomaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomAudio(options: [ZegoCustomAudio](./interface#zegocustomaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing custom audio stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5818,7 +5818,7 @@ Start capturing the custom audio stream, and the audio being pushed will not be 
 </ParamField>
 <ParamField
   name="startCaptureCustomVideo"
-  prototype="  startCaptureCustomVideo(options: [ZegoCustomVideo](./interface#zegocustomvideo)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomVideo(options: [ZegoCustomVideo](./interface#zegocustomvideo)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing custom video stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5848,7 +5848,7 @@ Start capturing the custom video stream, and the video being pushed will not be 
 </ParamField>
 <ParamField
   name="startCaptureCustomVideoAndAudio"
-  prototype="  startCaptureCustomVideoAndAudio(videoOptions: [ZegoCustomVideo](./interface#zegocustomvideo), audioOptions: [ZegoCustomAudio](./interface#zegocustomaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureCustomVideoAndAudio(videoOptions: [ZegoCustomVideo](./interface#zegocustomvideo), audioOptions: [ZegoCustomAudio](./interface#zegocustomaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing custom video and audio stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5878,7 +5878,7 @@ Start capturing the custom video and audio stream, and the  video and audio bein
 </ParamField>
 <ParamField
   name="startCaptureMicrophone"
-  prototype="  startCaptureMicrophone(options?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureMicrophone(options?: [ZegoCaptureMicrophone](./interface#zegocapturemicrophone)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing microphone audio stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5906,7 +5906,7 @@ Start capturing the microphone stream, and the audio being pushed will not be up
 </ParamField>
 <ParamField
   name="startCaptureScreen"
-  prototype="  startCaptureScreen(options?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureScreen(options?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing the screen sharing video stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
@@ -5934,7 +5934,7 @@ Start capturing the screen sharing video stream, and the video being pushed will
 </ParamField>
 <ParamField
   name="startCaptureScreenWithAudio"
-  prototype="  startCaptureScreenWithAudio(screenVideoOptions?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo), screenAudioOptions?: [ZegoCaptureScreenAudio](./interface#zegocapturescreenaudio)): [ZegoServerResponse](./interface#zegoserverresponse)"
+  prototype="  startCaptureScreenWithAudio(screenVideoOptions?: [ZegoCaptureScreenVideo](./interface#zegocapturescreenvideo), screenAudioOptions?: [ZegoCaptureScreenAudio](./interface#zegocapturescreenaudio)): Promise<[ZegoServerResponse](./interface#zegoserverresponse)>"
   desc="Start capturing the screen sharing video  and sharing audio stream."
   parent_name="ZegoLocalStream"
   parent_type="class">
