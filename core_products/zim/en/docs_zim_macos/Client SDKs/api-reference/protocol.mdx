@@ -1,6 +1,5 @@
 ---
 docType: API
-date: "2026-05-06"
 ---
 
 # Protocol
@@ -1594,7 +1593,7 @@ You can call this interface to create a group, and the person who calls this int
 
 <Warning title="">
 - **Available since**: 2.0.0 and above.
-- **Restrictions**: Available after login, unavailable after logout. UserIDs support a maximum of 100 users. Cannot reuse a groupID that has been previously used to create a group, regardless of whether the original group has been disbanded.
+- **Restrictions**: Available after login, unavailable after logout. UserIDs support a maximum of 100 users. It is not possible to use a previously used groupID to create a group again, regardless of whether the previous group has been dismissed.
 </Warning>
 </ParamField>
 <ParamField
@@ -1674,7 +1673,7 @@ You can call this interface to create a group, and the person who calls this int
 <Note title="">
 - **Use cases**: You can use this interface to create a chat scenario and join a group.
 - **When to call /Trigger**: The ZIM instance can be invoked after being created by [create] and logged in.
-- **Caution**: Available after login, unavailable after logout. UserIDs can have a maximum of 100 users and a group can have a maximum of 500 users. Cannot reuse a groupID that has been previously used to create a group, regardless of whether the original group has been disbanded.
+- **Caution**: Available after login, unavailable after logout. UserIDs can have a maximum of 100 users and a group can have a maximum of 500 users. It is not possible to use a previously used groupID to create a group again, regardless of whether the previous group has been dismissed.
 - **Related callbacks**: The result of creating the group is obtained through the [ZIMGroupCreatedCallback] callback.
 - **Related APIs**: You can use [joinGroup] to join a group, [leaveGroup] to leave a group, or [dismissGroup] to dismiss a group.
 </Note>
@@ -3300,7 +3299,7 @@ Callback for setting conversation mark.
 
 **Details**
 
-This method enables DND by selecting whether the unread of the target session is updated when a message is received.
+This method enables DND by selecting whether the unread of the target session is updated when a message is received. For conversations where Do Not Disturb is enabled, offline push notifications for that conversation are generally not received, unless the conversation is a group chat, the message sender has mentioned the current user, and the isNotifyMentionedUsers property in ZIMMessageSendConfig is set to true. In that case, the user will receive offline push notifications for that conversation.
 
 <Note title="">
 - **Use cases**: If the user selects MESSAGE DO not Disturb (DND), the user can call the corresponding method.

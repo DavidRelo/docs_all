@@ -6,14 +6,37 @@ articleID: 11594
 
 - - -
 
+## 1.1.0 版本
+
+**发布日期：2026-05-14**
+
+**新增功能**
+
+
+| 功能项-25% | 功能描述-40% | 相关接口-25% |
+|-----|-----|-----|
+|适配内存分页|适配 Android 15 的 16KB 内存分页大小。|-|
+
+**改进优化**
+
+| 优化项-25% | 优化描述-40% | 相关接口-25% |
+|-----|-----|-----|
+|优化自定义高级功能配置 | 现支持在调用 `ZIMAudio.init` 进行初始化前，通过 `ZIMAudio.setAdvancedConfig` 方法设置以下 3 个配置项，更新 `ZIMAudio.init` 初始化的默认配置。<ul><li>`enable_audio_focus_listener`</li><li>`audio_session_mix_with_others`</li><li>`deactivate_avsession_after_pause`</li></ul> |<ul><li>[setAdvancedConfig](@setAdvancedConfig)</li><li>[init](@init)</li></ul> |
+
+**问题修复**
+
+修复了快速切换正在播放的音频时，已知的一些问题。
+
+---
+
 ## 1.0.0 版本
 
 **发布日期：2024-04-17**
 
 ZIM Audio SDK 首次发布，支持完整的语音处理功能，包含语音采集、播放、噪声抑制（ANS）、自动增益控制（AGC）等，开发可以轻松实现高清语音消息的收发，无需关注音频处理的底层实现。若需使用，请同时搭配 ZIM SDK 接入。
 
-| <div style={{width:"130px"}}>功能项</div>  | 功能描述 | 相关接口 |
-|-------|-------|-------|
+| 功能项-25% | 功能描述-40% | 相关接口-25% |
+|-----|-----|-----|
 | 语言采集 | 支持录制至多 120 秒的 M4A 和 MP3 格式音频，检查录制状态。 | <ul><li>[startRecord](@startRecord)</li><li>[onRecorderStarted](@onRecorderStarted)</li><li>[onRecorderProgress](@onRecorderProgress)</li><li>[onRecorderFailed](@onRecorderFailed)</li><li>[completeRecord](@completeRecord)</li><li>[cancelRecord](@cancelRecord)</li><li>[onRecorderCompleted](@onRecorderCompleted)</li><li>[isRecording](@isRecording)</li><li>[cancelRecord](@cancelRecord)</li><li>[onRecorderCancelled](@onRecorderCancelled)</li></ul> |
 | 语音播放 | 支持播放 M4A 和 MP3 格式音频，以及设置音频输出播放设备。 | <ul><li>[startPlay](@startPlay)</li><li>[onPlayerStarted](@onPlayerStarted)</li><li>[onPlayerFailed](@onPlayerFailed)</li><li>[onPlayerInterrupted](@onPlayerInterrupted)</li><li>[onPlayerEnded](@onPlayerEnded)</li><li>[setAudioRouteType](@setAudioRouteType)</li><li>[stopPlay](@stopPlay)</li><li>[onPlayerStopped](@onPlayerStopped)</li></ul> |
 | 音量增益（AGC） | 支持自动调整麦克风音量，以适应远近拾音并保持音量稳定。<br />注意：如需使用本功能，请联系 ZEGO 技术支持开通，专业版和旗舰版用户可免费开通。| [enableAGC](@enableAGC) |

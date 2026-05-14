@@ -1,6 +1,5 @@
 ---
 docType: API
-date: "2026-05-06"
 ---
 
 # Protocol
@@ -1732,7 +1731,7 @@ Windows：C:\Users\[Your UserName]\AppData\[App Name]ZEGO.SDK\ZIMCaches
 
 <Warning title="">
 - **支持版本**：2.0.0及以上。
-- **使用限制**：登录后可用，登出后不可用。userIDs 最大 100 人。无法使用此前使用过的groupID再行创建群组，无论此前的群组是否解散。
+- **使用限制**：登录后可用，登出后不可用。userIDs 最大 100 人。无法使用此前使用过的 groupID 再行创建群组，无论此前的群组是否解散。
 </Warning>
 </ParamField>
 <ParamField
@@ -1831,7 +1830,7 @@ Windows：C:\Users\[Your UserName]\AppData\[App Name]ZEGO.SDK\ZIMCaches
 
 <Warning title="">
 - **支持版本**：2.0.0及以上。
-- **使用限制**：登录后可用，登出后不可用 。 userIDs 最大为 100 人， 一个群最大支持 500 人。无法使用此前使用过的groupID再行创建群组，无论此前的群组是否解散。
+- **使用限制**：登录后可用，登出后不可用 。 userIDs 最大为 100 人， 一个群最大支持 500 人。无法使用此前使用过的 groupID 再行创建群组，无论此前的群组是否解散。
 </Warning>
 
 **返回值**
@@ -3464,7 +3463,7 @@ Windows：C:\Users\[Your UserName]\AppData\[App Name]ZEGO.SDK\ZIMCaches
 
 **详情**
 
-该方法可以选择目标会话的未读数是否在收到消息时更新，从而实现免打扰功能。
+该方法可以选择目标会话的未读数是否在收到消息时更新，从而实现免打扰功能。对于被开启免打扰的会话，通常是不会收到该会话的离线推送，除非该会话是群聊，且消息发送者 @ 了当前用户，并在 ZIMMessageSendConfig 中将 isNotifyMentionedUsers 设置为了 true，此时本用户会收到该会话的离线推送。
 
 <Note title="">
 - **业务场景**：用户选择消息免打扰，可以调用对应方法，未读数不增加。

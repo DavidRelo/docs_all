@@ -22,7 +22,7 @@ To use this feature, please subscribe to the enterprise plan.
 
 ## Function introduction
 
-The ZIM SDK supports users editing messages they have already sent in one-on-one or group chats. The updated content will be synchronized in real-time to all members of the conversation, ensuring that communication information remains consistent and up-to-date.
+The ZIM SDK supports users editing messages they have already sent in **one-on-one or group** chats. The updated content will be synchronized in real-time to all members of the conversation, ensuring that communication information remains consistent and up-to-date.
 
 <Frame width="60%" height="auto">
   <img src="https://doc-media.zego.im/docuo/b9d8a509fd.jpeg" alt="20250319-173539.jpeg"/>
@@ -98,6 +98,7 @@ The result of the editing operation will then be known through {getPlatformData(
 :::
 
 <Note title="Note">
+- Only supports editing messages in **one-on-one and group conversations**.
 - Only supports editing messages within 24 hours. The editing is based on the message's `timestamp`, which will not be updated due to the message editing.
 - Message type cannot be changed, for Sample: {getPlatformData(props,ZIMTextMessageMap)} cannot be converted to {getPlatformData(props,ZIMCustomMessageMap)} or {getPlatformData(props,ZIMMultipleMessageMap)}.
 - Restrictions on each attribute in the edit message method are consistent with the relevant restrictions in the send message method.
