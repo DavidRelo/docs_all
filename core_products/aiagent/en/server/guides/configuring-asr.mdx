@@ -643,10 +643,6 @@ Below is an example of setting the language as Chinese.
 
 Detailed parameter description please refer to: [Volcengine Real-Time Speech Recognition](https://www.volcengine.com/docs/6561/1354869?lang=zh).
 
-#### Set Model
-
-Set the model through the `model_name` parameter, the model value is `bigmodel`.
-
 #### Set Hot Words
 
 Set the hot word table ID through the `corpus.boosting_table_id` parameter. This ID is obtained through the Volcengine self-learning platform configuration.
@@ -666,7 +662,6 @@ Below is an example of setting the hot word table ID to "test_boosting_table".
     "ASR": {
         "Vendor": "VolcSeedASR",
         "Params": {
-            "model_name": "bigmodel",
             "corpus": {
                 "boosting_table_id": "test_boosting_table"
             }
@@ -708,7 +703,6 @@ Below is an example of setting the hot word table ID to "test_boosting_table".
     "ASR": {
         "Vendor": "VolcSeedASR",
         "Params": {
-            "model_name": "bigmodel",
             "corpus": {
                 "boosting_table_id": "test_boosting_table"
             }

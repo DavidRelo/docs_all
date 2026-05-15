@@ -640,10 +640,6 @@ date: "2026-05-13"
 
 详细参数说明请查看：[火山引擎实时语音识别](https://www.volcengine.com/docs/6561/1354869?lang=zh)。
 
-#### 设置模型
-
-通过 `model_name` 参数设置模型，模型值为 `bigmodel`。
-
 #### 设置热词
 
 通过 `corpus.boosting_table_id` 参数设置热词表ID。该ID通过火山引擎自学习平台配置获取。
@@ -663,7 +659,6 @@ date: "2026-05-13"
     "ASR": {
         "Vendor": "VolcSeedASR",
         "Params": {
-            "model_name": "bigmodel",
             "corpus": {
                 "boosting_table_id": "test_boosting_table"
             }
@@ -705,7 +700,6 @@ date: "2026-05-13"
     "ASR": {
         "Vendor": "VolcSeedASR",
         "Params": {
-            "model_name": "bigmodel",
             "corpus": {
                 "boosting_table_id": "test_boosting_table"
             }
