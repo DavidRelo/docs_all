@@ -538,13 +538,9 @@ Below is an example of setting the language as Chinese and English.
 
 Detailed parameter description please refer to: [Aliyun Qwen Real-Time Speech Recognition](https://help.aliyun.com/zh/model-studio/qwen-real-time-speech-recognition?spm=a2c4g.11186623.help-menu-2400256.d_0_4_3_1.5d5423e4OJzxll).
 
-#### Set Model
-
-Set the model through the `model` parameter, the model value is `qwen3-asr-flash-realtime`.
-
 #### Set Language
 
-Set the language through the `language` parameter.
+Set the language through the `session.input_audio_transcription.language` parameter.
 
 <Accordion title="Supported Language Code List" defaultOpen="false">
 - zh: Chinese (Mandarin, Sichuan, Minnan, Wu)
@@ -589,10 +585,11 @@ Below is an example of setting the language as Chinese.
     "ASR": {
         "Vendor": "AliyunQwenASR",
         "Params": {
-            "input_audio_transcription": {
-                "language": "zh"
-            },
-            "model": "qwen3-asr-flash-realtime"
+            "session": {
+                "input_audio_transcription": {
+                    "language": "zh"
+                }
+            }
         }
     },
     "LLM": {
@@ -631,10 +628,11 @@ Below is an example of setting the language as Chinese.
     "ASR": {
         "Vendor": "AliyunQwenASR",
         "Params": {
-            "input_audio_transcription": {
-                "language": "zh"
-            },
-            "model": "qwen3-asr-flash-realtime"
+            "session": {
+                "input_audio_transcription": {
+                    "language": "zh"
+                }
+            }
         }
     }
 }

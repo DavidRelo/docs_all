@@ -535,13 +535,9 @@ date: "2026-05-13"
 
 详细参数说明请查看：[阿里云千问实时语音识别](https://help.aliyun.com/zh/model-studio/qwen-real-time-speech-recognition?spm=a2c4g.11186623.help-menu-2400256.d_0_4_3_1.5d5423e4OJzxll)。
 
-#### 设置模型
-
-通过 `model` 参数设置模型，模型值为 `qwen3-asr-flash-realtime`。
-
 #### 设置语种
 
-通过 `language` 参数设置语种。
+通过 `session.input_audio_transcription.language` 参数设置语种。
 
 <Accordion title="支持的语言代码列表" defaultOpen="false">
 - zh: 中文（普通话、四川话、闽南语、吴语）
@@ -586,10 +582,11 @@ date: "2026-05-13"
     "ASR": {
         "Vendor": "AliyunQwenASR",
         "Params": {
-            "input_audio_transcription": {
-                "language": "zh"
-            },
-            "model": "qwen3-asr-flash-realtime"
+            "session": {
+                "input_audio_transcription": {
+                    "language": "zh"
+                }
+            }
         }
     },
     "LLM": {
@@ -628,10 +625,11 @@ date: "2026-05-13"
     "ASR": {
         "Vendor": "AliyunQwenASR",
         "Params": {
-            "input_audio_transcription": {
-                "language": "zh"
-            },
-            "model": "qwen3-asr-flash-realtime"
+            "session": {
+                "input_audio_transcription": {
+                    "language": "zh"
+                }
+            }
         }
     }
 }
