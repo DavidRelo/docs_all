@@ -1,5 +1,6 @@
 ---
 articleID: 14167
+date: "2026-06-29"
 ---
 
 import { getPlatformData } from "/snippets/utils-content-parser.js"
@@ -119,6 +120,21 @@ export const SwitchFailedMap = {
   'iOS,mac': `ZIMRoomEventSwitchFailed`,
   "window": `ZIM_ROOM_EVENT_SWITCH_FAILED`
 }
+export const KICKED_OUTMap = {
+  'Android': `KICKED_OUT`,
+  'Flutter': `kickedOut`,
+  'Web,RN': `KickedOut`,
+  'iOS,mac': `ZIMRoomEventKickedOut`,
+  "window": `ZIM_ROOM_EVENT_KICKED_OUT`
+}
+export const ROOM_NOT_EXISTMap = {
+  'Android': `ROOM_NOT_EXIST`,
+  'Flutter': `roomNotExist`,
+  'Web,RN': `RoomNotExist`,
+  'iOS,mac': `ZIMRoomEventRoomNotExist`,
+  "window": `ZIM_ROOM_EVENT_ROOM_NOT_EXIST`
+}
+
 
 # Manage rooms
 
@@ -991,5 +1007,5 @@ Developers can call the ZIM server-side API to [destroy the room](/zim-server/ro
 
 ## Impact of network interruptions on the room lifecycle
 
-A ZIM room is similar to an online chat room. A network interruption causes the room to enter the reconnecting state and triggers the {getPlatformData(props,onRoomStateChangedMap)} callback. For details, please refer to {getPlatformData(props,platformMap)}.
+A ZIM room is similar to an online chat room. A network interruption causes the room to enter the reconnecting state and triggers the {getPlatformData(props,onRoomStateChangedMap)} callback. For details, please refer to [Scenario 4: ZIM Room Network Disconnection](https://www.zegocloud.com/docs/faq/zim-reconnect-support#scenario-4-zim-room-network-disconnection).
 
