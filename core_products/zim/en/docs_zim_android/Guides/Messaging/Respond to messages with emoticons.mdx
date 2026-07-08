@@ -1,6 +1,6 @@
 ---
 articleID: 14167
-date: "2026-06-16"
+date: "2026-07-06"
 ---
 
 import { getPlatformData } from "/snippets/utils-content-parser.js"
@@ -140,7 +140,7 @@ ZIMEventHandler.onMessageReactionsChanged = (ZIM zim, ZIMMessageReactionsChanged
 :::if{props.platform="Web"}
 ```typescript
 //  Received message with emoticons callback.
-zim.on('messageReactionsChanged', (zim: ZIM, data: ZIMEventOfMessageReactionsChangedResult) => {
+zim.on('messageReactionsChanged', (zim: ZIM, data: ZIMMessageReactionsChangedEventResult) => {
 });
 ```
 :::

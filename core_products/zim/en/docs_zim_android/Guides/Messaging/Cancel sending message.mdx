@@ -1,6 +1,6 @@
 ---
 articleID: 14167
-date: "2026-06-24"
+date: "2026-07-06"
 ---
 
 import { getPlatformData } from "/snippets/utils-content-parser.js"
@@ -183,7 +183,7 @@ ZIM.getInstance()!.sendMessage(
 
 :::if{props.platform="Web"}
 ```typescript
-zim.on('messageSentStatusChanged', (zim: ZIM, data: ZIMEventOfMessageSentStatusChangedResult) => {
+zim.on('messageSentStatusChanged', (zim: ZIM, data: ZIMMessageSentStatusChangedEventResult) => {
     // Message sent status changed
 });
 ```
