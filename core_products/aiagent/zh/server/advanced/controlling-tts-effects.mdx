@@ -1,5 +1,5 @@
 ---
-date: "2026-07-07"
+date: "2026-07-09"
 ---
 # 控制智能体语音情绪
 
@@ -21,28 +21,31 @@ date: "2026-07-07"
 
 ## 功能流程图
 
-以豆包语音 2.0 的自然语言描述（`context_texts` 标签），通过 ZEGO `TTS-Vendor=ByteDanceV3` 调用"[单向流式语音合成 WebSocket](https://www.volcengine.com/docs/6561/2534913?lang=en)"为例。
+以豆包语音 2.0的自然语言描述（`context_texts` 标签），通过ZEGO `TTS-Vendor=ByteDanceV3` 调用"[单向流式语音合成 WebSocket](https://www.volcengine.com/docs/6561/2534913?lang=zh)"为例。
+
+{/* TODO: Replace with actual flow diagram image */}
 
 <Frame width="auto" height="auto" caption="">
-  <img src="https://doc-media.zego.im/core_products/aiagent/zh/server/advanced/controlling-tts-effects.png" alt="controlling-tts-effects"/>
+  <img src="https://doc-media.zego.im/core_products/aiagent/zh/server/advanced/功能流程图zh.png" alt="controlling-tts-effects-flow"/>
 </Frame>
 
 ## 具体使用流程
 
-### 示例说明
-
-以豆包语音 2.0 的自然语言描述（`context_texts` 标签），通过 ZEGO `TTS-Vendor=ByteDanceV3` 调用"单向流式语音合成 WebSocket"为例，实现 AI 自动判断并以指定语气 + 音调播报回复的效果。
+<Note title="示例说明">以豆包语音 2.0 的自然语言描述（`context_texts` 标签），通过 ZEGO `TTS-Vendor=ByteDanceV3` 调用"单向流式语音合成 WebSocket"为例，实现AI 自动判断并以指定语气 + 音调播报回复的效果。</Note>
 
 ### 前提条件
 
 - 开通 AI Agent 服务。
 - 确认所使用的 TTS 模型或音色支持对应的合成参数，并且 ZEGO AI Agent 服务支持（详细见[附录-支持的厂商与参数](#支持的厂商与参数)章节）。
 
-### 步骤 1：注册智能体 / 创建智能体实例
+### 实现流程
+
+<Steps titleSize="h4">
+<Step title="注册智能体 / 创建智能体实例">
 
 通过[注册智能体](/aiagent-server/api-reference/agent-configuration-management/register-agent)或[创建智能体实例](/aiagent-server/api-reference/agent-instance-management/create-agent-instance)接口完成以下配置。
 
-#### 配置 1：配置 LLMMetaInfo 提取规则
+**配置1：配置 LLMMetaInfo 提取规则**
 
 通过配置[创建智能体实例](/aiagent-server/api-reference/agent-instance-management/create-agent-instance)接口的 `AdvancedConfig.LLMMetaInfo` 参数，指定如何从 LLM 文本中提取元数据。例如：
 
@@ -57,7 +60,7 @@ date: "2026-07-07"
 
 无需在注册智能体或创建智能体实例时再配置 `FilterText.BeginCharacters` 和 `FilterText.EndCharacters` 参数，因为元数据及标记符号将会被从 LLM 输出文本中移除。
 
-#### 配置 2：配置 TTSParamPaths 映射
+**配置2：配置 TTSParamPaths 映射**
 
 TTS 各厂商可以通过一些参数控制合成的语音情绪效果。`TTSParamPaths` 是创建智能体实例时通过 `AdvancedConfig` 传入的映射表，这个参数控制 LLM 输出内容中如何通过元数据标志映射为 TTS 情绪控制参数。
 
@@ -80,9 +83,7 @@ TTS 各厂商可以通过一些参数控制合成的语音情绪效果。`TTSPar
 
 <Note title="说明">`TTSParamPaths` 的 key 可以根据业务逻辑自定义（例如将 `instruction` 换成 `i`），只需保证 LLM 输出的元数据 key 与 `TTSParamPaths` 中定义的 key 一致即可。</Note>
 
-未在 `TTSParamPaths` 中配置的参数会被 TTS 层静默忽略，不影响其他参数与正常合成。参数有效性由厂商 API 自行校验，错误由厂商返回。
-
-#### 配置 3：让 LLM 按照指定格式输出内容
+**配置3：让 LLM 按照指定格式输出内容**
 
 在[注册智能体](/aiagent-server/api-reference/agent-configuration-management/register-agent)或[创建智能体实例](/aiagent-server/api-reference/agent-instance-management/create-agent-instance)接口的 `LLM.SystemPrompt` 中提示 LLM 在回答中输出包含厂商原生参数的标签。
 
@@ -104,30 +105,43 @@ TTS 各厂商可以通过一些参数控制合成的语音情绪效果。`TTSPar
 你的输出应为：[[{"context_texts":["用温柔的语气说话"],"pitch":5}]]你好呀，很高兴见到你！
 ```
 
-### 步骤 2：触发 AI 说话
+</Step>
 
-触发方式 1：**用户说话**
+<Step title="触发 AI 说话">
+
+**触发方式1：用户说话**
 
 用户在实时语音对话中说话，语音经 RTC 传输、ASR 转写后输入 LLM。LLM 自动生成回复并按已配置的 `SystemPrompt` 在句首输出 `[[标签]]`，标签随 LLM 流式输出进入 ZEGO 处理流程，无需额外调用。
 
-触发方式 2：**通过 `sendAgentInstanceLLM`，让 AI 主动说话**
+**触发方式2：通过 `sendAgentInstanceLLM`，让 AI 主动说话**
 
 LLM 本身不支持主动输出，需开发者基于一定规则主动触发智能体说话，从而提升实时互动中的沉浸感。例如当用户 5 秒未说话时，让智能体主动搭话。
 
-通过 [`sendAgentInstanceLLM`](/aiagent-server/api-reference/agent-instance-control/send-agent-instance-llm) 主动触发 LLM 生成回复，LLM 同样按已配置的 `SystemPrompt` 输出带 `[[标签]]` 的文本，处理流程与触发方式 1 一致。
+通过 [`sendAgentInstanceLLM`](/aiagent-server/api-reference/agent-instance-control/send-agent-instance-llm) 主动触发 LLM 生成回复，LLM 同样按已配置的 `SystemPrompt` 输出带 `[[标签]]` 的文本，处理流程与触发方式1一致。
 
-调用示例：
+调用 [`sendAgentInstanceLLM`](/aiagent-server/api-reference/agent-instance-control/send-agent-instance-llm) 接口示例：
 
 ```json
 {
-  "AgentInstanceId": "1907755175297171456",
-  "Text": "主动跟用户打个招呼吧"
+    "AgentInstanceId": "1907755175297171456",
+    "Text": "主动跟用户打个招呼吧"
 }
 ```
 
-调用后 LLM 会基于上下文生成回复，并按已配置的 `SystemPrompt` 在回复句首输出 `[[标签]]`，后续提取、映射、合成流程与触发方式 1 完全一致。
+调用后 LLM 会基于上下文生成回复，并按已配置的 `SystemPrompt` 在回复句首输出 `[[标签]]`，后续提取、映射、合成流程与触发方式1完全一致。
 
-触发方式 3：**通过 `sendAgentInstanceTTS`，让 AI 主动说话（可选）**
+LLM SSE 数据返回示例：
+
+```json
+data: {"id":"d7ae7c4a-1524-4fe5-9d58-e4d59b89d8f0","object":"chat.completion.chunk","created":1709899323,"model":"step-1-8k","choices":[{"index":0,"delta":{"role":"","content":"[[{\"context_texts\":[\"用温柔的语气说话\"],\"pitch\":5}]]"},"finish_reason":""}],"usage":{"prompt_tokens":83,"completion_tokens":1,"total_tokens":84}}
+data: {"id":"d7ae7c4a-1524-4fe5-9d58-e4d59b89d8f0","object":"chat.completion.chunk","created":1709899323,"model":"step-1-8k","choices":[{"index":0,"delta":{"role":"","content":"您"},"finish_reason":""}],"usage":{"prompt_tokens":83,"completion_tokens":2,"total_tokens":85}}
+data: {"id":"d7ae7c4a-1524-4fe5-9d58-e4d59b89d8f0","object":"chat.completion.chunk","created":1709899323,"model":"step-1-8k","choices":[{"index":0,"delta":{"role":"","content":"好"},"finish_reason":""}],"usage":{"prompt_tokens":83,"completion_tokens":3,"total_tokens":86}}
+...
+data: {"id":"d7ae7c4a-1524-4fe5-9d58-e4d59b89d8f0","object":"chat.completion.chunk","created":1709899323,"model":"step-1-8k","choices":[{"index":0,"delta":{"role":"","content":"。"},"finish_reason":"stop"}],"usage":{"prompt_tokens":83,"completion_tokens":150,"total_tokens":233}}
+data: [DONE]
+```
+
+**触发方式3：通过 `sendAgentInstanceTTS`，让 AI 主动说话（可选）**
 
 除了通过 LLM 自动输出标签外，您也可以在调用 [`sendAgentInstanceTTS`](/aiagent-server/api-reference/agent-instance-control/send-agent-instance-tts) 等接口时，直接在 `text` 字段最前面携带标签，标签内容不会被朗读：
 
@@ -139,37 +153,39 @@ LLM 本身不支持主动输出，需开发者基于一定规则主动触发智�
 
 标签必须置于文本最前面（句首）。
 
-### 步骤 3：ZEGO 自动处理并控制 TTS 播报
+</Step>
+
+<Step title="ZEGO 自动处理并控制 TTS 播报">
 
 无论通过上述哪种触发方式，ZEGO AI Agent 服务都会按既定规则处理：
-1. 按 `LLMMetaInfo` 提取 `[[标签]]` 并移除标记
-2. 按 `TTSParamPaths` 把短参数名映射为厂商请求体路径
-3. 调用第三方 TTS 按参数合成
+① 按 `LLMMetaInfo` 提取 `[[标签]]` 并移除标记 → ② 按 `TTSParamPaths` 把短参数名映射为厂商请求体路径 → ③ 调用第三方 TTS 按参数合成。
 
 最终用户听到带情绪的语音，例如以"温柔的语气 + pitch=5"播报"你好"。
 
-### 如何适配其他 TTS 厂商
+</Step>
+
+</Steps>
+
+<Note title="如何适配其他 TTS 厂商">
 
 本示例以火山 `ByteDanceV3` 为例。若使用其他厂商，只需调整以下三处，其余流程（提取标签、触发方式、ZEGO 自动处理）完全不变：
 
-1. **配置 2 的 `TTSParamPaths` 映射路径** — 替换为目标厂商的参数路径，见[附录-支持的厂商与参数](#支持的厂商与参数)表"TTS 参数路径"列。
-   例如：阿里云 CosyVoice 的 `instruction` → `payload.parameters.instruction`
+- **配置2 的 `TTSParamPaths` 映射路径** — 替换为目标厂商的参数路径，见附录《[支持的厂商与参数](#支持的厂商与参数)》表"TTS 参数路径"列。例：阿里云 CosyVoice 的 `instruction` → `payload.parameters.instruction`
+- **配置3 的 `SystemPrompt` 提示词** — 替换为目标厂商支持的参数名和取值规则。例：MiniMax 改为输出 `emotion` 枚举；CosyVoice 改为输出 `instruction` 指令
+- **触发方式3 的 text 标签**（如使用直接调用 TTS）— 标签内的字段名同步替换为目标厂商的参数名即可
 
-2. **配置 3 的 `SystemPrompt` 提示词** — 替换为目标厂商支持的参数名和取值规则。
-   例如：MiniMax 改为输出 `emotion` 枚举：`[[{"emotion":"happy"}]]`；CosyVoice 改为输出 `instruction` 指令：`[[{"instruction":"用四川方言说话"}]]`
+</Note>
 
-3. **触发方式 3 的 text 标签**（如使用直接调用 TTS） — 标签内的字段名同步替换为目标厂商的参数名即可。
+### 特殊说明
 
-## 特殊说明
-
-- 现在由客户自己管理传入参数的有效性。对于 `emotion`，如果大模型生成或 `sendAgentInstanceTTS` 调用传入了厂商不支持的参数值，可能导致生成的 TTS 没有声音。
+- 现在由客户自己管理传入参数的有效性。如果大模型生成或 `sendAgentInstanceTTS` 调用传入了厂商不支持的参数值，可能导致生成的 TTS 没有声音。
 - 音色/情绪列表可能会变更，请以 TTS 厂商提供的最新列表为准。
 
-<Accordion title="早期实现方式" defaultOpen="false">
+<Accordion title="早期实现方式（已废弃，仅供老用户参考）" defaultOpen="false">
 
 > 以下方案为早期实现方式，推荐使用上述基于 `TTSParamPaths` 透传厂商原生参数的方式。
 
-### 1. 指定 LLM 文本中控制情绪的内容格式
+**1. 指定 LLM 文本中控制情绪的内容格式**
 
 无需在注册智能体或创建智能体实例时再配置 `FilterText.BeginCharacters` 和 `FilterText.EndCharacters` 参数，因为元数据及标记符号将会被从 LLM 输出文本中移除。
 
@@ -182,7 +198,7 @@ LLM 本身不支持主动输出，需开发者基于一定规则主动触发智�
 }
 ```
 
-### 2. 让 LLM 按照指定的控制情绪格式输出内容
+**2. 让 LLM 按照指定的控制情绪格式输出内容**
 
 以下示例中，提示的 `emotion` 选值仅仅是示例，实际 TTS 厂商支持哪些情绪就可以让 LLM 输出的文本中包含哪些情绪。但是一般都不会包含所有情绪（比如一个人工客服应用不会让它有悲伤情绪）。
 
@@ -233,7 +249,7 @@ LLM 本身不支持主动输出，需开发者基于一定规则主动触发智�
 </Tab>
 </Tabs>
 
-### 3. 让 TTS 厂商根据情绪控制参数合成带情绪的语音
+**3. 让 TTS 厂商根据情绪控制参数合成带情绪的语音**
 
 现在您可以与创建的智能体实例开始语音对话啦！当 LLM 输出的内容包含了情绪控制参数时，AI Agent 服务会自动根据这些参数调用 TTS 厂商接口，让它以丰富的语音情绪表现力与您进行互动。
 
