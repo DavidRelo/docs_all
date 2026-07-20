@@ -1,3 +1,6 @@
+---
+date: "2026-07-16"
+---
 import UIKIT_ANDROID_PREVENT_CODE_OBFUSCATION from "/snippets/uikit/UIKIT_ANDROID_PREVENT_CODE_OBFUSCATION-en.mdx";
 import UIKIT_FLUTTER_ANDROID_GRADLE_CONFIG from "/snippets/uikit/UIKIT_FLUTTER_ANDROID_GRADLE_CONFIG-en.mdx";
 import UIKIT_FLUTTER_ANDROID_APP_GRADLE_CONFIG from "/snippets/uikit/UIKIT_FLUTTER_ANDROID_APP_GRADLE_CONFIG-en.mdx";
@@ -13,6 +16,14 @@ You can refer to this document to understand the effects of the offline call inv
 
 2. Offline call invitation configuration is complex. If you only require online call invitations, please skip the steps related to firebase console and apple certificate.
 </Tip>
+
+<Warning title="Warning">
+When Call Kit and IMKit are used together, `support_apple_callkit` needs to be set before use.
+```dart
+import 'package:zego_zim_audio/zego_zim_audio.dart';
+await ZIMAudio.setAdvancedConfig('support_apple_callkit', 'true');
+```
+</Warning>
 
 ### UI Implementation Effects
 

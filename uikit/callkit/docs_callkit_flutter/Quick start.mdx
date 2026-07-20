@@ -1,3 +1,6 @@
+---
+date: "2026-07-16"
+---
 import UIKIT_ANDROID_PREVENT_CODE_OBFUSCATION from "/snippets/uikit/UIKIT_ANDROID_PREVENT_CODE_OBFUSCATION-en.mdx";
 import UIKIT_FLUTTER_ANDROID_GRADLE_CONFIG from "/snippets/uikit/UIKIT_FLUTTER_ANDROID_GRADLE_CONFIG-en.mdx";
 
@@ -7,6 +10,14 @@ import UIKIT_FLUTTER_ANDROID_GRADLE_CONFIG from "/snippets/uikit/UIKIT_FLUTTER_A
 <Video src="https://www.youtube.com/embed/RowFWxNfQhc"/>					
 
 <Note title="TIPS">If you need the call invitation feature, the integration method is different. Please refer to [this document](./Quick%20start%20(with%20call%20invitation).mdx).</Note>
+
+<Warning title="Warning">
+When Call Kit and IMKit are used together, `support_apple_callkit` needs to be set before use.
+```dart
+import 'package:zego_zim_audio/zego_zim_audio.dart';
+await ZIMAudio.setAdvancedConfig('support_apple_callkit', 'true');
+```
+</Warning>
 
 ## Integrate the SDK
 
