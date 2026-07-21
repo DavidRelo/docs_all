@@ -293,7 +293,15 @@ async createDigitalHumanAgentInstance(agentId: string, userId: string, rtcInfo: 
     const result = await this.sendRequest<any>(action, body);
     console.log("create agent instance result", result);
     // The returned DigitalHumanConfig is the digital human configuration, and the client initializes the digital human SDK according to the digital human configuration, and then you can interact with the digital human in real time.
-    return result.AgentInstanceId, result.DigitalHumanConfig;
+    // Convert PascalCase fields from AI Agent API to snake_case for client, and wrap with code/message envelope.
+    return {
+        code: 0,
+        message: 'success',
+        agent_instance_id: result.AgentInstanceId,
+        agent_stream_id: result.AgentStreamId,
+        agent_user_id: result.AgentUserId,
+        digital_human_config: result.DigitalHumanConfig
+    };
 }
 ```
 After completing this step, you can create a digital human agent instance. After integrating the client, you can interact with the digital human agent instance in real-time video.
