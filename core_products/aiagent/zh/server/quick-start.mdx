@@ -294,7 +294,15 @@ async createDigitalHumanAgentInstance(agentId: string, userId: string, rtcInfo: 
     const result = await this.sendRequest<any>(action, body);
     console.log("create agent instance result", result);
     // 返回的 DigitalHumanConfig 是数字人配置，客户端根据数字人配置初始化数字人 SDK ，然后即可与数字人进行实时互动。
-    return result.AgentInstanceId, result.DigitalHumanConfig;
+    // 将 AI Agent API 返回的 PascalCase 字段转换为客户端使用的 snake_case，并补齐 code/message 信封。
+    return {
+        code: 0,
+        message: 'success',
+        agent_instance_id: result.AgentInstanceId,
+        agent_stream_id: result.AgentStreamId,
+        agent_user_id: result.AgentUserId,
+        digital_human_config: result.DigitalHumanConfig
+    };
 }
 ```
 完成这一步骤后，您就可以创建数字人智能体实例。集成客户端后可与该数字人智能体实例进行视频互动。
