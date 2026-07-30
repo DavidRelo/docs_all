@@ -1,5 +1,5 @@
 ---
-date: '2026-03-25'
+date: "2026-07-29"
 ce-comparison:
   - ZIM:ZIM
   - SDK:SDK
@@ -117,8 +117,8 @@ The specific handling process for room reconnection is as follows:
 <td>Wait for SDK to automatically reconnect the network. Users do not need to do anything.</td>
 </tr>
 <tr>
-<td rowspan="3">T2</td>
-<td rowspan="3">`state` == 2 (Network Recovered)</td>
+<td rowspan="4">T2</td>
+<td rowspan="4">`state` == 2 (Network Recovered)</td>
 <td>`state` == 2 (Room Connected)
 <br />`event` == 0 (Room Network Recovered)<br /></td>
 <td>When the room status is normally restored, users do not need to do anything and can use room functions normally.</td>
@@ -134,6 +134,15 @@ The specific handling process for room reconnection is as follows:
 <td>When the room is disconnected because it does not exist, if users need to recreate the room, they can call
 `createRoom` or `enterRoom` interface to recreate the room, or prompt users on the page that they have exited the room chat page.</td>
 </tr>
+<tr>                                                           
+<td>`state` == 0 (Room disconnected)                                                                                          
+<br />`event` == 2 (Other reasons)<br /></td>                                                                                                                 
+<td>                                                                                                                                                          
+Disconnected for other reasons. If the user needs to re-enter the room, they can call the `joinRoom` or `enterRoom` interface to rejoin the room, or display a
+prompt on the page indicating that the user has left the room chat page.                                                                                       
+<Warning title="">It is not recommended for developers to perform automatic reconnection here.</Warning>                                                           
+</td>                                                                                                                                                         
+</tr>  
 </tbody></table>
 
 
